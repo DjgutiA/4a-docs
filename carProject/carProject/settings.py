@@ -12,6 +12,19 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import json
+
+
+def dict_credentials(developing=False):
+    file_name = './carProject/credentials/'
+    if developing:
+        file_name += 'developing.json'
+    else:
+        file_name += 'local.json'
+    with open(file_name) as file:
+        data = json.load(file)
+    return data
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -43,7 +56,7 @@ INSTALLED_APPS = [
 ]
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
     'REFRESSH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': False,
@@ -96,17 +109,7 @@ WSGI_APPLICATION = 'carProject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd2onp3m7j82ivt',
-        'USER': 'umacswrjnvcjlu',
-        'PASSWORD': 'e4584a4c7fc4f598584f80f32b517e6c824eb61fdf139f896df7d894827efd2c',
-        'HOST': 'ec2-23-23-133-10.compute-1.amazonaws.com',
-        'PORT': '5432',
-    }
-}
-
+DATABASES = dict_credentials(developing=False)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
