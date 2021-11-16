@@ -1,3 +1,3 @@
-from .cities import Cities
+from .city import City
 from .category import Category
-from .cars import Cars
+from .car import Car

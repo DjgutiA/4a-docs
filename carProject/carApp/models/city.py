@@ -6,7 +6,7 @@ class City(models.Model):
     name_city = models.CharField('City', max_length=45, null=False)
 
     class Meta:
-        db_table = "Cities"
+        db_table = "cities"
         verbose_name = "City"
-        verbose_name_plural = "cities"
+        verbose_name_plural = "Cities"
         ordering = ["id_city"]

@@ -9,5 +9,5 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = ['id_category', 'name_category']
 
     def create(self, validated_data):
-        categoryInstance = Category.objects.create(**validated_data)
-        return categoryInstance
+        category_instance = Category.objects.create(**validated_data)
+        return category_instance
