@@ -12,6 +12,19 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import json
+
+
+def dict_credentials(developing=False):
+    file_name = './userProject/credentials/'
+    if developing:
+        file_name += 'developing.json'
+    else:
+        file_name += 'local.json'
+    with open(file_name) as file:
+        data = json.load(file)
+    return data
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -43,13 +56,13 @@ INSTALLED_APPS = [
 ]
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
     'REFRESSH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': False,
     'UPDATE_LAST_LOGIN': False,
     'ALGORITHM': 'HS256',
-    'USER_ID_FIELD': 'id',
+    'USER_ID_FIELD': 'id_user',
     'USER_ID_CLAIM': 'user_id',
 }
 
@@ -98,17 +111,7 @@ WSGI_APPLICATION = 'userProject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd4mraaq05g8sh3',
-        'USER': 'ostkgzwcczxihi',
-        'PASSWORD': 'e7f8b10b4a0cb76626e9b102542710cde03a522467fc59fe1928840a15f1a537',
-        'HOST': 'ec2-34-224-239-147.compute-1.amazonaws.com',
-        'PORT': '5432',
-    }
-}
-
+DATABASES = dict_credentials(developing=False)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

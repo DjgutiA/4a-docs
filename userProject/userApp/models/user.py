@@ -23,13 +23,15 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+
 class User(AbstractBaseUser, PermissionsMixin):
 
     id_user = models.BigAutoField(primary_key=True)
-    name = models.CharField('Name', max_length=20)
+    first_name = models.CharField('First Name', max_length=40)
+    last_name = models.CharField('Last Name', max_length=40)
     document = models.CharField('Document', max_length=20, unique=True)
-    email = models.EmailField('Email', max_length=30, unique=True)
-    password = models.CharField('Password', max_length=40)
+    email = models.EmailField('Email', max_length=100, unique=True)
+    password = models.CharField('Password', max_length=256)
     birth_date = models.DateTimeField('Birth Date', null=True)
     cellphone = models.CharField('Phone Number', max_length=20)
     gender_list = [('F', 'Femenino'), ('M', 'Masculino')]
@@ -44,7 +46,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         super().save(**kwargs)
 
     class Meta:
-        db_table = "user"
+        db_table = "users"
         verbose_name = "User"
         verbose_name_plural = "Users"
         ordering = ["id_user"]
