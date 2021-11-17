@@ -8,7 +8,7 @@ class CarSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Car
-        fields = ['id_car', 'licence_plate', 'passengers', 'transmission',
+        fields = ['id_car', 'license_plate', 'passengers', 'transmission',
                   'air_conditioning', 'suitcase', 'category', 'city', 'price', 'brand', 'model']
 
     def create(self, validated_data):
@@ -22,7 +22,7 @@ class CarSerializer(serializers.ModelSerializer):
         city = City.objects.get(id_city=obj.city_id)
         return {
             'id_car': car.id_car,
-            'licence_plate': car.licence_plate,
+            'license_plate': car.license_plate,
             'passengers': car.passengers,
             'transmission': car.transmission,
             'air_conditioning': car.air_conditioning,

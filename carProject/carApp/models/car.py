@@ -5,8 +5,8 @@ from .category import Category
 
 class Car(models.Model):
     id_car = models.AutoField(primary_key=True)
-    licence_plate = models.CharField(
-        'Licence Plate', max_length=6, null=False, unique=True)
+    license_plate = models.CharField(
+        'License Plate', max_length=6, null=False, unique=True)
     passengers = models.IntegerField('Passengers', null=False)
     transmission_list = [('A', 'Automatic'), ('M', 'Mechanical')]
     transmission = models.CharField('Transmission',
