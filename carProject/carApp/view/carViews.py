@@ -1,9 +1,6 @@
 from django.conf import settings
 from rest_framework import generics, status
-from rest_framework.response import Response
-from rest_framework_simplejwt.backends import TokenBackend
-from rest_framework.permissions import IsAuthenticated
-from carApp.models import Car, City, Category
+from carApp.models import Car
 from carApp.serializers import CarSerializer
 from django.http import JsonResponse
 

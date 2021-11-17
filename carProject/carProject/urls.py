@@ -24,4 +24,5 @@ urlpatterns = [
     path('car/<str:license_plate>', CarDetailView.as_view()),
     path('car/delete/<int:pk>', CarDeleteView.as_view()),
     path('car/update/<int:pk>', CarUpdateView.as_view()),
+    path('cars/filter/', CarFilerView.as_view())
 ]
