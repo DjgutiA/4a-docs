@@ -45,3 +45,33 @@ class CarDeleteView(generics.DestroyAPIView):
 class CarUpdateView(generics.UpdateAPIView):
     serializer_class = CarSerializer
     queryset = Car.objects.all()
+
+
+class BrandListView(generics.GenericAPIView):
+    def get(self, request, *args, **kwargs):
+        queryset = Car.objects.all()
+        brand_list = []
+        for car in queryset:
+            if car.brand not in brand_list:
+                brand_list.append(car.brand)
+        data = {
+            'brands': brand_list
+        }
+
+        return JsonResponse(data, status=status.HTTP_200_OK)
+
+
+class ModelListView(generics.GenericAPIView):
+    serializer_class = CarSerializer
+
+    def get(self, request, *args, **kwargs):
+        queryset = Car.objects.filter(brand=kwargs['brand'])
+        model_list = []
+        for car in queryset:
+            if car.model not in model_list:
+                model_list.append(car.model)
+        data = {
+            'models': model_list
+        }
+
+        return JsonResponse(data, status=status.HTTP_200_OK)
