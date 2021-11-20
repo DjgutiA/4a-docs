@@ -10,7 +10,7 @@ read and delete.
 
 The third microservice is built in Java using Spring boot. It is used to control the booking system.
 
-The API gateway to control every request. This component is built using Apollo GraphQL.
+The API gateway controls every request. This component is built using Apollo GraphQL.
 
 Frontend layer is built in vue.js to make the requests to the API gateway.
 ----------------------------------------------------------------------------------------------------------------------
