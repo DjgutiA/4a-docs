@@ -29,4 +29,6 @@ urlpatterns = [
     path('cities/', CityListView.as_view()),
     path('brands/', BrandListView.as_view()),
     path('models/<str:brand>/', ModelListView.as_view()),
+    path('availability/', AvailabilityCreateView.as_view()),
+    path('availabilities/', AvailabilitiesDetailView.as_view()),
 ]
