@@ -1,0 +1,140 @@
+* {
+    font-family: Montserrat;
+    font-size: 50px;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    background-image: url("/images/fondoLogin.png");
+    background-size: cover;
+}
+
+.SignUp-container {
+    width: 60%;
+    height: 100%;
+    font-size: 100%;
+    background-color: #F3F8FA;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+}
+
+.SignUp-title {
+    font-size: 70%;
+    font-weight: bold;
+    color: #D1345B;
+    margin: 4% 0 2% 0;
+}
+
+.SignUp-form {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.SignUp-form-innerDiv {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0;
+}
+
+.left-form,
+.right-form {
+    display: flex;
+    flex-direction: column;
+    float: left;
+    width: 50%;
+    margin: 0;
+}
+
+.right-form label,
+.left-form label {
+    font-size: 35%;
+    color: #141E28;
+    margin: 2% 0 0 8%;
+    text-align: left;
+}
+
+input[type=text],
+input[type=date],
+input[type=email],
+input[type=password] {
+    width: 80%;
+    height: 40px;
+    border-radius: 10px;
+    border: 2px solid #141E28;
+    background-color: #F3F8FA;
+    margin: 2% 0 2% 8%;
+    font-size: 40%;
+    color: #141E28;
+}
+
+select {
+    width: 83%;
+    height: 45px;
+    border-radius: 10px;
+    border: 2px solid #141E28;
+    background-color: #F3F8FA;
+    color: #141E28;
+    margin: 2% 0 2% 8%;
+    font-size: 40%;
+}
+
+option {
+    font-size: 100%;
+}
+
+.SignUp-form button {
+    width: fit-content;
+    padding: 2% 5%;
+    border-radius: 10px;
+    border: none;
+    background-color: #D1345B;
+    color: #F3F8FA;
+    font-size: 35%;
+    margin-top: 3%;
+    cursor: pointer;
+}
+
+.cta {
+    margin: 0;
+    font-size: 35%;
+    height: fit-content;
+    color: #141E28;
+    width: fit-content;
+    text-align: center;
+}
+
+.cta span {
+    height: fit-content;
+}
+
+.cta span a {
+    font-size: 35%;
+    text-decoration: none;
+    color: #D1345B;
+    font-weight: bold;
+    height: fit-content;
+}
+
+.logo-container {
+    position: absolute;
+    top: 8%;
+    right: 8%;
+    background-color: #141E28;
+    width: 150px;
+    height: 150px;
+    transform: rotate(45deg);
+}
+
+.logo-container img {
+    transform: rotate(-45deg);
+    width: 100%;
+    cursor: pointer;
+}

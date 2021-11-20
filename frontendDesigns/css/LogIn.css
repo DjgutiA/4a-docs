@@ -1,0 +1,97 @@
+* {
+    font-family: Montserrat;
+    font-size: 50px;
+}
+
+body {
+    background-image: url("/images/fondoLogIn.png");
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+}
+
+.logIn-container {
+    width: 30%;
+    height: 100%;
+    font-size: 100%;
+    background-color: #F3F8FA;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.logIn-title {
+    margin: 0;
+    font-size: 70%;
+    font-weight: bold;
+    color: #D1345B;
+    margin: 25% 0 10% 0;
+}
+
+.logIn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logIn label {
+    font-size: 35%;
+    color: #141E28;
+    margin: 2% 0 0 0;
+    width: 95%;
+    text-align: left;
+}
+
+.logIn input[type=text] {
+    width: 95%;
+    height: 45px;
+    border-radius: 10px;
+    border: 2px solid #141E28;
+    background-color: #F3F8FA;
+    color: #141E28;
+    margin: 2% 0 2% 0;
+    font-size: 40%;
+}
+
+.logIn button {
+    width: fit-content;
+    padding: 4% 10%;
+    border-radius: 10px;
+    border: none;
+    background-color: #D1345B;
+    color: #F3F8FA;
+    font-size: 35%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    cursor: pointer;
+}
+
+.cta {
+    margin: 0;
+    font-size: 35%;
+    color: #141E28;
+}
+
+.cta span a {
+    font-size: 35%;
+    text-decoration: none;
+    color: #D1345B;
+    font-weight: bold;
+}
+
+.logo-container {
+    position: absolute;
+    top: 8%;
+    right: 8%;
+    background-color: #141E28;
+    width: 150px;
+    height: 150px;
+    transform: rotate(45deg);
+}
+
+.logo-container img {
+    transform: rotate(-45deg);
+    width: 100%;
+    cursor: pointer;
+}

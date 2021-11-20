@@ -1,0 +1,252 @@
+* {
+    font-family: 'Montserrat';
+    font-size: 50px;
+}
+
+html {
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #F3F8FA;
+}
+
+.navbar {
+    width: 100%;
+    height: 60px;
+    position: absolute;
+    top: 0;
+    background-color: #141E28;
+    opacity: 85%;
+}
+
+.navbar ul {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    height: 100%;
+    margin: 0 5% 0 40%;
+}
+
+.navbar ul li {
+    list-style: none;
+    margin-left: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar ul li a {
+    font-size: 35%;
+    text-decoration: none;
+    color: #F3F8FA;
+}
+
+.navbar ul li:nth-child(-n+3) {
+    padding-right: 3%;
+    border-right: 2px solid #7C8F99;
+}
+
+.navbar ul li a:hover {
+    color: #D1345B;
+}
+
+.hero-section {
+    background-image: url('/images/FondoPortada.png');
+    background-size: cover;
+}
+
+.hero-section {
+    width: 100%;
+    height: 100vh;
+}
+
+.logo {
+    position: absolute;
+    width: 10%;
+    top: 10%;
+    left: 4%;
+    margin: 0;
+}
+
+.hero-heading .hero-title,
+h2 {
+    margin-top: 0;
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    width: 16ch;
+    color: #F3F8FA;
+    font-size: 100%;
+}
+
+.hero-heading h2 {
+    top: 50%;
+    width: fit-content;
+    font-weight: 400;
+    font-size: 55%;
+}
+
+.hero-heading span {
+    top: 45%;
+    width: fit-content;
+    font-weight: 400;
+    font-size: 100%;
+    color: #D1345B;
+}
+
+.hero-section .car {
+    margin-left: 45%;
+    margin-top: 10%;
+    width: 50%;
+}
+
+.hero-section button {
+    position: absolute;
+    left: 5%;
+    top: 60%;
+    font-size: 50%;
+    font-weight: 700;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 25px;
+    box-shadow: none;
+    border: 2px solid #141E28;
+    background-color: #D1345B;
+    color: #141E28;
+    outline: 2px solid #D1345B;
+    padding: 3px 20px;
+    cursor: pointer;
+}
+
+.hero-section button:hover {
+    border: 2px solid #141E28;
+    background-color: #F3F8FA;
+    outline: 2px solid #F3F8FA;
+}
+
+.cars-section {
+    margin: 0 3%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.vehicles-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 75%;
+    margin: 0;
+    padding: 3% 0 0 0;
+    color: #D1345B;
+}
+
+.card {
+    width: 30%;
+    height: 40%;
+    background-color: #7C8F99;
+    margin-top: 3%;
+    margin-left: 3%;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.container-info {
+    display: flex;
+    flex-direction: row;
+}
+
+.vehicle-info {
+    width: 50%;
+}
+
+.vehicle-info .brand {
+    font-size: 60%;
+    margin: 15% 0 0 15%;
+    height: fit-content;
+    color: #F3F8FA;
+}
+
+.vehicle-info .model {
+    font-size: 50%;
+    margin: 0 0 10% 15%;
+    font-weight: 400;
+    height: fit-content;
+    color: #F3F8FA;
+}
+
+.price-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #D1345B;
+    border-radius: 12px;
+    width: fit-content;
+    margin-left: 15%;
+    padding: 0 5% 0 0;
+}
+
+.from {
+    margin: 5% 0 0 5%;
+    font-size: 30%;
+    color: #F3F8FA;
+}
+
+.price {
+    margin: 0 5%;
+    font-size: 70%;
+    color: #F3F8FA;
+    font-weight: 700;
+}
+
+.vehicle-features {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+    width: 50%;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    height: 50px;
+
+}
+
+.feature img {
+    width: 20%;
+    height: 75%;
+    object-fit: contain;
+    margin: 0 2% 0 20%;
+}
+
+.feature span {
+    font-size: 20%;
+    color: #F3F8FA;
+    margin: 0;
+}
+
+.car-image {
+    height: 35%;
+    width: 90%;
+    margin: 5% 0 5% 5%;
+}
+
+footer {
+    height: 400px;
+    margin-top: 10%;
+    background-color: #141E28;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+footer h6,
+p {
+    margin: 0;
+    font-size: 40%;
+    color: #F3F8FA;
+    font-weight: 400;
+}
