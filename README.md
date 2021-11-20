@@ -17,4 +17,4 @@ Frontend layer is built in vue.js to make the requests to the API gateway.
 Each microservice is packaged on a Docker container. 
 Every container is finally deployed to heroku.
 
-To get a visual example of the architecture, refer to the 'Diagrama de arquitectura' image.
+To get a visual example of the architecture, refer to the 'Diagrama de arquitectura' image on master branch.
