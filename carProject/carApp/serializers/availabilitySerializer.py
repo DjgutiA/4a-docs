@@ -5,10 +5,24 @@ from .citySerializer import CitySerializer
 
 
 class ListAvailabilitySerializer(serializers.ListSerializer):
-    def create(self, validated_data):
-        list_availabilities = [Availability(**row) for row in validated_data]
-        availabilities = Availability.objects.bulk_create(list_availabilities)
-        return availabilities
+    def update(self, instance, validated_data):
+        availabilities_mapping = {
+            availability.id_availability: availability for availability in instance}
+        data_mapping = {item['id_availability']: item for item in validated_data}
+
+        values = []
+        for id_availability, data in data_mapping.items():
+            availability = availabilities_mapping.get(id_availability, None)
+            if availability is None:
+                values.append(self.child.create(data))
+            else:
+                values.append(self.child.update(availability, data))
+
+        for id_availability, availability in availabilities_mapping.items():
+            if id_availability not in data_mapping:
+                availability.delete()
+
+        return values
 
 
 class AvailabilitySerializer(serializers.ModelSerializer):

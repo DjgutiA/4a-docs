@@ -2,6 +2,7 @@ from django.http.response import JsonResponse
 from rest_framework import generics, status
 from carApp.models import Availability
 from carApp.serializers import AvailabilitySerializer
+from carApp.utils import RangeDate
 
 
 class AvailabilitiesDetailView(generics.ListAPIView):
@@ -12,10 +13,64 @@ class AvailabilitiesDetailView(generics.ListAPIView):
 class AvailabilityCreateView(generics.CreateAPIView):
     serializer_class = AvailabilitySerializer
 
-    def post(self, request, *args, **kwargs):
-        availability_serializer = AvailabilitySerializer(data=request.data)
-        availability_serializer.is_valid(raise_exception=True)
-        availability_serializer.save()
-        print(availability_serializer.data)
+    def get_serializer(self, *args, **kwargs):
+        if isinstance(self.request.data, list):
+            kwargs["many"] = True
+        return super(AvailabilityCreateView, self).get_serializer(*args, **kwargs)
 
-        return JsonResponse(availability_serializer.data)
+    def post(self, request, *args, **kwargs):
+        list_date = RangeDate(
+            request.data['start_date'], request.data['end_date']).data
+        car = request.data['car']
+        is_availability = request.data['is_availability']
+
+        data = []
+        for date in list_date:
+            data.append({
+                'car': car,
+                'date': date,
+                'is_availability': is_availability,
+                'key_field': '{}-{}'.format(car, date)
+            })
+        request._full_data = data
+        return super().post(request, *args, **kwargs)
+
+
+class AvailabilityUpdateView(generics.UpdateAPIView):
+    serializer_class = AvailabilitySerializer
+    queryset = Availability.objects.all()
+    lookup_field = "id_availability"
+
+    def get_serializer(self, *args, **kwargs):
+        if isinstance(self.request.data, list):
+            kwargs["many"] = True
+        return super(AvailabilityUpdateView, self).get_serializer(*args, **kwargs)
+
+    def update(self, request, *args, **kwargs):
+        list_date = RangeDate(
+            request.data['start_date'], request.data['end_date']).data
+        car = request.data['car']
+        is_availability = request.data['is_availability']
+
+        data = []
+        for date in list_date:
+            data.append('{}-{}'.format(car, date))
+        queryset = Availability.objects.filter(key_field__in=data)
+        counter = 0
+        for row in queryset:
+            print(row.is_availability)
+            row.is_availability = is_availability
+            row.save()
+            counter += 1
+        data = {
+            'response': '{} Registros fueron actualizados a {}'.format(counter, is_availability)
+        }
+        return JsonResponse(data, status=status.HTTP_201_CREATED)
+
+
+class AvailabilityDetailforCarView(generics.ListAPIView):
+    serializer_class = AvailabilitySerializer
+
+    def get_queryset(self):
+        queryset = Availability.objects.filter(car=self.kwargs['car'])
+        return queryset
