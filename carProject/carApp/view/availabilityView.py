@@ -58,7 +58,6 @@ class AvailabilityUpdateView(generics.UpdateAPIView):
         queryset = Availability.objects.filter(key_field__in=data)
         counter = 0
         for row in queryset:
-            print(row.is_availability)
             row.is_availability = is_availability
             row.save()
             counter += 1
