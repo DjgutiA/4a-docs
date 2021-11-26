@@ -25,6 +25,7 @@ class AvailabilityCreateView(generics.CreateAPIView):
         is_availability = request.data['is_availability']
 
         data = []
+        key_field = []
         for date in list_date:
             data.append({
                 'car': car,
@@ -32,6 +33,11 @@ class AvailabilityCreateView(generics.CreateAPIView):
                 'is_availability': is_availability,
                 'key_field': '{}-{}'.format(car, date)
             })
+            key_field.append('{}-{}'.format(car, date))
+
+        for availability in Availability.objects.filter(car=car):
+            if availability.key_field in key_field:
+                return JsonResponse({'key_field': 'Availability with this car {} and this date {} already exists.'.format(availability.car_id, availability.date)}, status=status.HTTP_400_BAD_REQUEST)
         request._full_data = data
         return super().post(request, *args, **kwargs)
 

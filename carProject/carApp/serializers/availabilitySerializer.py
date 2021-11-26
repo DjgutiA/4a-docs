@@ -40,7 +40,6 @@ class AvailabilitySerializer(serializers.ModelSerializer):
     def to_representation(self, obj):
         availability = Availability.objects.get(
             id_availability=obj.id_availability)
-        #car = Car.objects.get(id_car=obj.car)
         return {
             'id_availability': availability.id_availability,
             'car': availability.car.id_car,
