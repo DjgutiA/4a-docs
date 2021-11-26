@@ -25,8 +25,13 @@ urlpatterns = [
     path('car/delete/<int:pk>', CarDeleteView.as_view()),
     path('car/update/<int:pk>', CarUpdateView.as_view()),
     path('cars/filter/', CarFilterView.as_view()),
+    path('cars/filter/availability/', AvailabilityCarFilterCarView.as_view()),
     path('categories/', CategoryListView.as_view()),
     path('cities/', CityListView.as_view()),
     path('brands/', BrandListView.as_view()),
     path('models/<str:brand>/', ModelListView.as_view()),
+    path('availability/', AvailabilityCreateView.as_view()),
+    path('availabilities/', AvailabilitiesDetailView.as_view()),
+    path('availability/<int:car>', AvailabilityDetailforCarView.as_view()),
+    path('availability/update/', AvailabilityUpdateView.as_view()),
 ]

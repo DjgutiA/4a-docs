@@ -13,7 +13,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 import json
-import django_heroku
+#import django_heroku
+import django_on_heroku
 
 
 def dict_credentials(developing=False):
@@ -110,7 +111,7 @@ WSGI_APPLICATION = 'carProject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = dict_credentials(developing=True)
+DATABASES = dict_credentials(developing=False)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -155,4 +156,4 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-django_heroku.settings(locals())
+django_on_heroku.settings(locals())
