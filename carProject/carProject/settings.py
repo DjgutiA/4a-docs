@@ -111,7 +111,7 @@ WSGI_APPLICATION = 'carProject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = dict_credentials(developing=False)
+DATABASES = dict_credentials(developing=True)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
