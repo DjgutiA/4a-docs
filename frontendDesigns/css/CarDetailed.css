@@ -1,0 +1,177 @@
+* {
+    font-family: 'Montserrat';
+    font-size: 50px;
+}
+
+body {
+    background-color: #141E28;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.addons-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #F3F8FA;
+    border-radius: 10px;
+    width: 60%;
+    height: 90%;
+    padding: 0 0.5% 0 0.5%;
+    margin: 0 2% 0 5%;
+    box-shadow: 4px 4px 9px 1px rgba(0, 0, 0, 0.5);
+}
+
+.addon {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    background-color: #D1345B;
+    color: #F3F8FA;
+    font-size: 35%;
+    border-radius: 10px;
+    width: 90%;
+    height: 20%;
+    padding-inline: 3%;
+}
+
+.addon img {
+    height: 70%;
+    margin-right: 5%;
+}
+
+.addon-title {
+    color: #F3F8FA;
+    font-size: 100%;
+    margin-right: auto;
+}
+
+.addon button {
+    margin-left: 3%;
+    background-color: #7C8F99;
+    height: 50%;
+    width: fit-content;
+    padding-inline: 2%;
+    border: 1px solid #7C8F99;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #F3F8FA;
+    font-weight: 500;
+    opacity: 100%;
+}
+
+.addon button:hover {
+    opacity: 85%;
+}
+
+.detailed-info-container {
+    background-color: #F3F8FA;
+    font-size: 40%;
+    border-radius: 10px;
+    width: 30%;
+    margin: 0% 4% auto 2%;
+    box-shadow: 4px 4px 9px 1px rgba(0, 0, 0, 0.5);
+}
+
+.car-model-category {
+    flex-direction: column;
+    color: #F3F8FA;
+}
+
+.car-model-category h2 {
+    font-size: 50%;
+    margin: 5% 0 0 5%;
+}
+
+.car-model-category p {
+    font-size: 30%;
+    margin: 0 0 0 5%;
+}
+
+.car-info-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #D1345B;
+    margin: 5% 5% 0 5%;
+    padding-bottom: 5%;
+    border-radius: 10px;
+}
+
+.car-info-container img {
+    height: 80%;
+    width: 80%;
+    margin-left: 18%;
+}
+
+.time-price-labels {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2%;
+}
+
+.time-price-subtotal {
+    display: flex;
+    justify-content: space-between;
+    margin-inline: 5%;
+    padding-inline: 2%;
+}
+
+.time-price-subtotal p {
+    font-size: 42%;
+    font-weight: bold;
+    margin-block: 2%;
+    color: #D1345B;
+}
+
+.bg-pink-border-rounded {
+    background-color: #D1345B;
+    border-radius: 10px;
+    color: #F3F8FA;
+    padding-block: 4%;
+}
+
+.time-price-total-values {
+    display: flex;
+    justify-content: space-between;
+    margin: 2% 7% 2% 7%;
+    padding-inline: 2%;
+}
+
+.time-price-total-values p {
+    font-size: 40%;
+    margin: 0;
+}
+
+.taxes-title {
+    font-size: 42%;
+    font-weight: bold;
+    color: #D1345B;
+    margin: 5% auto 2% 8%;
+}
+
+.detailed-info-container button {
+    width: 86%;
+    height: 2%;
+    background-color: #7C8F99;
+    border: 1px solid #7C8F99;
+    border-radius: 10px;
+    font-size: 100%;
+    font-weight: bold;
+    color: #F3F8FA;
+    padding: 4%;
+    margin-left: 7%;
+    margin-bottom: 5%;
+    cursor: pointer;
+}
+
+.detailed-info-container button:hover {
+    opacity: 85%
+}
