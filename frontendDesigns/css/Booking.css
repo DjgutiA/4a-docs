@@ -32,6 +32,7 @@
     border-radius: 10px;
     margin-left: 10%;
     width: 40%;
+    box-shadow: 4px 4px 9px 1px rgba(0, 0, 0, 0.2);
 }
 
 .reception-location,
@@ -104,6 +105,7 @@ button[type=submit]:hover {
     width: 30%;
     background-color: var(--white-color);
     border-radius: 10px;
+    box-shadow: 4px 4px 9px 1px rgba(0, 0, 0, 0.2);
 }
 
 .choose-car-container h5 {
