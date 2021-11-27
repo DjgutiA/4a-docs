@@ -1,0 +1,126 @@
+:root {
+    --pink-color: #D1345B;
+    --dark-blue-color: #141E28;
+    --light-blue-color: #7C8F99;
+    --white-color: #F3F8FA;
+}
+
+* {
+    font-family: Montserrat;
+    font-size: 50px;
+}
+
+.container {
+    width: 100vw;
+    background-color: var(--dark-blue-color);
+}
+
+.main-title {
+    font-size: 70%;
+    color: var(--white-color);
+    margin: 0 0 2% 10%;
+    width: fit-content;
+}
+
+.divs-container {
+    display: flex;
+}
+
+.date-location-container {
+    text-align: left;
+    background-color: var(--white-color);
+    border-radius: 10px;
+    margin-left: 10%;
+    width: 40%;
+}
+
+.reception-location,
+.delivery-date,
+.car-title {
+    font-size: 60%;
+    color: var(--pink-color);
+    margin-inline: 5%;
+}
+
+.location-date-inputs,
+.delivery-date-inputs {
+    border: 2px solid var(--light-blue-color);
+    margin: 0 5% 0 5%;
+    padding-block: 5%;
+    border-radius: 10px;
+}
+
+.reception-location-label,
+.delivery-date-label {
+    font-size: 40%;
+    margin-inline: 5%;
+    margin-block: 0;
+    color: var(--dark-blue-color);
+}
+
+select,
+input[type=date] {
+    font-size: 40%;
+    width: 89%;
+    margin-inline: 5%;
+    border: 2px solid var(--dark-blue-color);
+    border-radius: 10px;
+    color: var(--dark-blue-color);
+    padding-block: 1%;
+}
+
+select {
+    width: 90%;
+    margin-bottom: 5%;
+}
+
+option {
+    font-size: 100%;
+    border-radius: 10px;
+    color: var(--dark-blue-color);
+}
+
+button[type=submit] {
+    font-size: 45%;
+    margin: 5%;
+    background-color: var(--pink-color);
+    border: 1px solid var(--pink-color);
+    border-radius: 10px;
+    cursor: pointer;
+    width: 90%;
+    padding-block: 2%;
+    color: var(--white-color);
+    font-weight: bold;
+    opacity: 80%;
+}
+
+button[type=submit]:hover {
+    opacity: 100%;
+}
+
+.choose-car-container {
+    margin-left: 8%;
+    height: 100%;
+    width: 30%;
+    background-color: var(--white-color);
+    border-radius: 10px;
+}
+
+.choose-car-container h5 {
+    font-size: 30%;
+    color: var(--dark-blue-color);
+    margin: 0 5% 0 5%
+}
+
+.car-logo {
+    height: 40%;
+    width: 90%;
+    margin-inline: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.car-logo img {
+    margin-left: 5%
+}

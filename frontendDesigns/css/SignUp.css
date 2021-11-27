@@ -1,3 +1,10 @@
+:root {
+    --pink-color: #D1345B;
+    --dark-blue-color: #141E28;
+    --light-blue-color: #7C8F99;
+    --white-color: #F3F8FA;
+}
+
 * {
     font-family: Montserrat;
     font-size: 50px;
@@ -14,7 +21,7 @@ body {
     width: 60%;
     height: 100%;
     font-size: 100%;
-    background-color: #F3F8FA;
+    background-color: var(--white-color);
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -25,7 +32,7 @@ body {
 .SignUp-title {
     font-size: 70%;
     font-weight: bold;
-    color: #D1345B;
+    color: var(--pink-color);
     margin: 4% 0 2% 0;
 }
 
@@ -56,7 +63,7 @@ body {
 .right-form label,
 .left-form label {
     font-size: 35%;
-    color: #141E28;
+    color: var(--dark-blue-color);
     margin: 2% 0 0 8%;
     text-align: left;
 }
@@ -68,20 +75,20 @@ input[type=password] {
     width: 80%;
     height: 40px;
     border-radius: 10px;
-    border: 2px solid #141E28;
-    background-color: #F3F8FA;
+    border: 2px solid var(--dark-blue-color);
+    background-color: var(--white-color);
     margin: 2% 0 2% 8%;
     font-size: 40%;
-    color: #141E28;
+    color: var(--dark-blue-color);
 }
 
 select {
     width: 83%;
     height: 45px;
     border-radius: 10px;
-    border: 2px solid #141E28;
-    background-color: #F3F8FA;
-    color: #141E28;
+    border: 2px solid var(--dark-blue-color);
+    background-color: var(--white-color);
+    color: var(--dark-blue-color);
     margin: 2% 0 2% 8%;
     font-size: 40%;
 }
@@ -95,8 +102,8 @@ option {
     padding: 2% 5%;
     border-radius: 10px;
     border: none;
-    background-color: #D1345B;
-    color: #F3F8FA;
+    background-color: var(--pink-color);
+    color: var(--white-color);
     font-size: 35%;
     margin-top: 3%;
     cursor: pointer;
@@ -106,7 +113,7 @@ option {
     margin: 0;
     font-size: 35%;
     height: fit-content;
-    color: #141E28;
+    color: var(--dark-blue-color);
     width: fit-content;
     text-align: center;
 }
@@ -118,7 +125,7 @@ option {
 .cta span a {
     font-size: 35%;
     text-decoration: none;
-    color: #D1345B;
+    color: var(--pink-color);
     font-weight: bold;
     height: fit-content;
 }
@@ -127,7 +134,7 @@ option {
     position: absolute;
     top: 8%;
     right: 8%;
-    background-color: #141E28;
+    background-color: var(--dark-blue-color);
     width: 150px;
     height: 150px;
     transform: rotate(45deg);

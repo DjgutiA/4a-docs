@@ -1,10 +1,17 @@
+:root {
+    --pink-color: #D1345B;
+    --dark-blue-color: #141E28;
+    --light-blue-color: #7C8F99;
+    --white-color: #F3F8FA;
+}
+
 * {
     font-family: 'Montserrat';
     font-size: 50px;
 }
 
 body {
-    background-color: #141E28;
+    background-color: var(--dark-blue-color);
     display: flex;
     height: 100vh;
     width: 100vw;
@@ -21,7 +28,7 @@ body {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    background-color: #F3F8FA;
+    background-color: var(--white-color);
     border-radius: 10px;
     width: 60%;
     height: 90%;
@@ -34,8 +41,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: left;
-    background-color: #D1345B;
-    color: #F3F8FA;
+    background-color: var(--pink-color);
+    color: var(--white-color);
     font-size: 35%;
     border-radius: 10px;
     width: 90%;
@@ -49,21 +56,21 @@ body {
 }
 
 .addon-title {
-    color: #F3F8FA;
+    color: var(--white-color);
     font-size: 100%;
     margin-right: auto;
 }
 
 .addon button {
     margin-left: 3%;
-    background-color: #7C8F99;
+    background-color: var(--light-blue-color);
     height: 50%;
     width: fit-content;
     padding-inline: 2%;
-    border: 1px solid #7C8F99;
+    border: 1px solid var(--light-blue-color);
     border-radius: 10px;
     cursor: pointer;
-    color: #F3F8FA;
+    color: var(--white-color);
     font-weight: 500;
     opacity: 100%;
 }
@@ -73,7 +80,7 @@ body {
 }
 
 .detailed-info-container {
-    background-color: #F3F8FA;
+    background-color: var(--white-color);
     font-size: 40%;
     border-radius: 10px;
     width: 30%;
@@ -83,7 +90,7 @@ body {
 
 .car-model-category {
     flex-direction: column;
-    color: #F3F8FA;
+    color: var(--white-color);
 }
 
 .car-model-category h2 {
@@ -99,7 +106,7 @@ body {
 .car-info-container {
     display: flex;
     flex-direction: column;
-    background-color: #D1345B;
+    background-color: var(--pink-color);
     margin: 5% 5% 0 5%;
     padding-bottom: 5%;
     border-radius: 10px;
@@ -128,13 +135,13 @@ body {
     font-size: 42%;
     font-weight: bold;
     margin-block: 2%;
-    color: #D1345B;
+    color: var(--pink-color);
 }
 
 .bg-pink-border-rounded {
-    background-color: #D1345B;
+    background-color: var(--pink-color);
     border-radius: 10px;
-    color: #F3F8FA;
+    color: var(--white-color);
     padding-block: 4%;
 }
 
@@ -153,19 +160,19 @@ body {
 .taxes-title {
     font-size: 42%;
     font-weight: bold;
-    color: #D1345B;
+    color: var(--pink-color);
     margin: 5% auto 2% 8%;
 }
 
 .detailed-info-container button {
     width: 86%;
     height: 2%;
-    background-color: #7C8F99;
-    border: 1px solid #7C8F99;
+    background-color: var(--light-blue-color);
+    border: 1px solid var(--light-blue-color);
     border-radius: 10px;
     font-size: 100%;
     font-weight: bold;
-    color: #F3F8FA;
+    color: var(--white-color);
     padding: 4%;
     margin-left: 7%;
     margin-bottom: 5%;

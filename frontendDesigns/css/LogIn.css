@@ -1,3 +1,10 @@
+:root {
+    --pink-color: #D1345B;
+    --dark-blue-color: #141E28;
+    --light-blue-color: #7C8F99;
+    --white-color: #F3F8FA;
+}
+
 * {
     font-family: Montserrat;
     font-size: 50px;
@@ -14,7 +21,7 @@ body {
     width: 30%;
     height: 100%;
     font-size: 100%;
-    background-color: #F3F8FA;
+    background-color: var(--white-color);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,7 +32,7 @@ body {
     margin: 0;
     font-size: 70%;
     font-weight: bold;
-    color: #D1345B;
+    color: var(--pink-color);
     margin: 25% 0 10% 0;
 }
 
@@ -37,7 +44,7 @@ body {
 
 .logIn label {
     font-size: 35%;
-    color: #141E28;
+    color: var(--dark-blue-color);
     margin: 2% 0 0 0;
     width: 95%;
     text-align: left;
@@ -47,9 +54,9 @@ body {
     width: 95%;
     height: 45px;
     border-radius: 10px;
-    border: 2px solid #141E28;
-    background-color: #F3F8FA;
-    color: #141E28;
+    border: 2px solid var(--dark-blue-color);
+    background-color: var(--white-color);
+    color: var(--dark-blue-color);
     margin: 2% 0 2% 0;
     font-size: 40%;
 }
@@ -59,8 +66,8 @@ body {
     padding: 4% 10%;
     border-radius: 10px;
     border: none;
-    background-color: #D1345B;
-    color: #F3F8FA;
+    background-color: var(--pink-color);
+    color: var(--white-color);
     font-size: 35%;
     margin-top: 10%;
     margin-bottom: 10%;
@@ -70,13 +77,13 @@ body {
 .cta {
     margin: 0;
     font-size: 35%;
-    color: #141E28;
+    color: var(--dark-blue-color);
 }
 
 .cta span a {
     font-size: 35%;
     text-decoration: none;
-    color: #D1345B;
+    color: var(--pink-color);
     font-weight: bold;
 }
 
@@ -84,7 +91,7 @@ body {
     position: absolute;
     top: 8%;
     right: 8%;
-    background-color: #141E28;
+    background-color: var(--dark-blue-color);
     width: 150px;
     height: 150px;
     transform: rotate(45deg);
