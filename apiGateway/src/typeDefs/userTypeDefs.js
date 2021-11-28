@@ -8,29 +8,42 @@ const authTypeDefs = gql`
         access: String!
     }
     input CredentialsInput {
-        username: String!
+        document: String!
         password: String!
     }
     input SignUpInput {
-        username: String!
+        firstName: String!
+        lastName: String!
+        document: String!
         password: String!
-        name: String!
         email: String!
-        balance: Int!
+        birthDate: String!
+        cellphone: String!
+        gender: Gender!
     }
-    type UserDetail {
+    type User {
         id: Int!
-        username: String!
+        firstName: String!
+        lastName: String!
+        document: String!
         password: String!
-        name: String!
         email: String!
+        birthDate: String!
+        cellphone: String!
+        gender: Gender!
     }
+
+    enum Gender {
+        F: 'Femenino',
+        M: 'Masculino'
+    }
+
     type Mutation {
-        signUpUser(userInput :SignUpInput): Tokens!
+        signUpUser(userInput: SignUpInput): Tokens!
         logIn(credentials: CredentialsInput!): Tokens!
         refreshToken(refresh: String!): Access!
     }
     type Query {
-        userDetailById(userId: Int!): UserDetail!
+        userDetailById(userId: Int!): User!
     }`;
-module.exports = authTypeDefs;
+module.exports = userTypeDefs;
