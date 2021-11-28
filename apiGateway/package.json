@@ -1,5 +1,5 @@
 {
-    "name": "apigateway",
+    "name": "six_rental_apigateway",
     "version": "1.0.0",
     "description": "",
     "main": "src/index",
