@@ -2,26 +2,25 @@ package com.SixRental.rentalProject.models;
 
 import org.springframework.data.annotation.Id;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.time.LocalDate;
 
 public class Rental {
 
     @Id
     private String id;
-    private Integer id_user;
-    private Integer id_car;
-    private Instant rentalDate = Instant.now();
+    private Integer idUser;
+    private Integer idCar;
+    private LocalDateTime rentalDate;
     private LocalDate startDate;
     private LocalDate finalDate;
     private Integer price;
 
-    public Rental(String id, Integer id_user, Integer id_car, Instant rentalDate,
-                  LocalDate startDate, LocalDate finalDate, Integer price) {
+    public Rental(String id, Integer idUser, Integer idCar, LocalDate startDate, LocalDate finalDate, Integer price) {
         this.id = id;
-        this.id_user = id_user;
-        this.id_car = id_car;
-        this.rentalDate = rentalDate;
+        this.idUser = idUser;
+        this.idCar = idCar;
+        this.rentalDate = LocalDateTime.now();
         this.startDate = startDate;
         this.finalDate = finalDate;
         this.price = price;
@@ -35,27 +34,27 @@ public class Rental {
         this.id = id;
     }
 
-    public Integer getId_user() {
-        return id_user;
+    public Integer getIdUser() {
+        return idUser;
     }
 
-    public void setId_user(Integer id_user) {
-        this.id_user = id_user;
+    public void setIdUser(Integer id_user) {
+        this.idUser = id_user;
     }
 
-    public Integer getId_car() {
-        return id_car;
+    public Integer getIdCar() {
+        return idCar;
     }
 
-    public void setId_car(Integer id_car) {
-        this.id_car = id_car;
+    public void setIdCar(Integer id_car) {
+        this.idCar = id_car;
     }
 
-    public Instant getRentalDate() {
+    public LocalDateTime getRentalDate() {
         return rentalDate;
     }
 
-    public void setRentalDate(Instant rentalDate) {
+    public void setRentalDate(LocalDateTime rentalDate) {
         this.rentalDate = rentalDate;
     }
 
@@ -87,8 +86,8 @@ public class Rental {
     public String toString() {
         return "Rental{" +
                 "id='" + id + '\'' +
-                ", id_user=" + id_user +
-                ", id_car=" + id_car +
+                ", id_user=" + idUser +
+                ", id_car=" + idCar +
                 ", rentalDate=" + rentalDate +
                 ", startDate=" + startDate +
                 ", finalDate=" + finalDate +
