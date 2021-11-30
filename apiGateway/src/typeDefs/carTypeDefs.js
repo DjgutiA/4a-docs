@@ -3,8 +3,8 @@ const carTypeDefs = gql`
 
     type Car {
         idCar: Int!
-        licencePlate: String!
-        pasangers: Int!
+        licensePlate: String!
+        passengers: Int!
         transmission: Transmission!
         airConditioning: Boolean!
         suitcase: Suitcase!
@@ -15,9 +15,9 @@ const carTypeDefs = gql`
         model: String!
     }
 
-    type CarInput {
-        licencePlate: String!
-        pasangers: Int!
+    input CarInput {
+        licensePlate: String!
+        passengers: Int!
         transmission: Transmission!
         airConditioning: Boolean!
         suitcase: Suitcase!
@@ -32,8 +32,8 @@ const carTypeDefs = gql`
         response: String!
     }
 
-    type CarFilter {
-        pasangers: Int
+    input CarFilter {
+        passengers: Int
         transmission: Transmission
         airConditioning: Boolean
         suitcase: Suitcase
@@ -46,14 +46,14 @@ const carTypeDefs = gql`
     }
 
     enum Transmission {
-        A: 'Automatic',
-        M: 'Mechanical'
+        A
+        M
     }
 
     enum Suitcase {
-        S: 'Small',
-        M: 'Medium',
-        B: 'Big'
+        S
+        M
+        B
     }
 
     type Brands {
@@ -66,16 +66,16 @@ const carTypeDefs = gql`
     
 
     extend type Query {
-        filterCar(carFilter: CarFilter!) [Car]
-        listCar() [Car]
-        getCar(licencePlate: String!) Car
-        listBrands() Brands
-        listModel() Models
+        filterCar(carFilter: CarFilter!): [Car]
+        listCar(): [Car]
+        getCar(licensePlate: String!): Car
+        listBrands(): Brands
+        listModel(brand: String!): Models
     }
     extend type Mutation {
-        createCar(car: Car!): Car
-        updateCar(car: CarInput) Car
-        deleteCar(idCar: int!) Response
+        createCar(carInput: CarInput!): Response
+        updateCar(idCar: Int!, carInput: CarInput!): Car
+        deleteCar(idCar: Int!): Response
     }
 
 `;

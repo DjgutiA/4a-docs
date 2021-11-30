@@ -1,7 +1,7 @@
 const { gql } = require('apollo-server');
 const rentalTypeDefs = gql`
     type Rental {
-        idRental: Int!
+        idRental: String!
         idUser: Int!
         idCar: Int!
         rentalDate: String!
@@ -10,7 +10,16 @@ const rentalTypeDefs = gql`
         price: Int!
     }
 
-    type RentalInput {
+    input RentalInput {
+        idUser: Int!
+        idCar: Int!
+        startDate: String!
+        finalDate: String!
+        price: Int!
+    }
+
+    input RentalUpdateInput {
+        idRental: String!
         idUser: Int!
         idCar: Int!
         startDate: String!
@@ -19,13 +28,13 @@ const rentalTypeDefs = gql`
     }
 
     extend type Query {
-        listRentalForUser(idUser: Int!) [Rental]
-        getRental(idRental: Int!) Rental
+        listRentalForUser(idUser: Int!): [Rental]
+        listRentalForCar(idCar: Int!): [Rental]
+        getRental(idRental: String!): Rental
     }
     extend type Mutation {
-        createRental(rentalInput: RentalInput!)
-        updateRental(rentalInput: RentalInput!)
-        deleteRental(idRental: Int!)
-    }
-`;
+        createRental(rentalInput: RentalInput!): Rental
+        updateRental(rentalUpdateInput: RentalUpdateInput!): Rental
+        deleteRental(idRental: String!): Response
+    }`;
 module.exports = rentalTypeDefs;

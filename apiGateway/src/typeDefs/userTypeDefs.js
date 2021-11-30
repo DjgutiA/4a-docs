@@ -1,5 +1,5 @@
 const { gql } = require('apollo-server');
-const authTypeDefs = gql`
+const userTypeDefs = gql`
     type Tokens {
         refresh: String!
         access: String!
@@ -31,15 +31,16 @@ const authTypeDefs = gql`
         birthDate: String!
         cellphone: String!
         gender: Gender!
+        isSuperUser: Boolean!
     }
 
     enum Gender {
-        F: 'Femenino',
-        M: 'Masculino'
+        F
+        M
     }
 
     type Mutation {
-        signUpUser(userInput: SignUpInput): Tokens!
+        signUpUser(userInput: SignUpInput!): Tokens!
         logIn(credentials: CredentialsInput!): Tokens!
         refreshToken(refresh: String!): Access!
     }

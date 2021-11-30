@@ -6,7 +6,7 @@ const categoryTypeDefs = gql`
     }
 
     extend type Query {
-        listCategory() [Category]
+        listCategory(): [Category]
     }
 `;
 module.exports = categoryTypeDefs;

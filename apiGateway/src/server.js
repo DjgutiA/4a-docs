@@ -1,5 +1,5 @@
 module.exports = {
-    car_api_url: 'https://sixrentalcar-ms.herokuapp.com',
-    user_api_url: 'https://sixrentaluser-ms.herokuapp.com',
-    rental_api_url: ''
+    carApiUrl: 'https://sixrentalcar-ms.herokuapp.com',
+    userApiUrl: 'https://sixrentaluser-ms.herokuapp.com',
+    rentalApiUrl: 'https://rental-ms.herokuapp.com/'
 };
