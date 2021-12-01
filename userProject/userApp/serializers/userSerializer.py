@@ -23,8 +23,10 @@ class UserSerializer(serializers.ModelSerializer):
             'first_name': user.first_name,
             'last_name': user.last_name,
             'document': user.document,
+            'email': user.email,
             'password': user.password,
             'birth_date': user.birth_date,
             'cellphone': user.cellphone,
-            'gender': user.gender
+            'gender': user.gender,
+            'is_superuser': user.is_superuser
         }
