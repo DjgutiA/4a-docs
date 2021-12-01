@@ -1,31 +1,31 @@
 const { gql } = require('apollo-server');
 const availabilityTypeDefs = gql`
     type Availability {
-        idAvailability: Int!
+        id_availability: Int!
         car: Int!
         date: String!
-        isAvailability: Boolean!
+        is_availability: Boolean!
         created: String!
         modified: String!
     }
 
     input AvailabilityInput {
         car: Int!
-        startDate: String!
-        endDate: String!
-        isAvailability: Boolean!
+        start_date: String!
+        end_date: String!
+        is_availability: Boolean!
     }
 
     input AvailabilityFilter {
         car: [Int]
-        startDate: String!
-        endDate: String!
+        start_date: String!
+        end_date: String!
     }
 
     extend type Query {
         filterCarAvailability(availabilityFilter: AvailabilityFilter): [Car]
-        filterForCar(idCar: Int!): [Availability]
-        listAvailability(): [Availability]
+        filterForCar(id_car: Int!): [Availability]
+        listAvailability: [Availability]
     }
     extend type Mutation {
         createAvailability(availabilityInput: AvailabilityInput!): [Availability]

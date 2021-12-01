@@ -17,8 +17,8 @@ class CarAPI extends RESTDataSource {
         return await this.get(`/cars/`);
     }
 
-    async getCar(licensePlate) {
-        return await this.get(`/car/${licensePlate}`);
+    async getCar(license_plate) {
+        return await this.get(`/car/${license_plate}`);
     }
 
     async listBrands() {
@@ -34,13 +34,13 @@ class CarAPI extends RESTDataSource {
         return await this.post(`/car/`, carInput);
     }
 
-    async updateCar(idCar, carInput) {
+    async updateCar(id_car, carInput) {
         carInput = new Object(JSON.parse(JSON.stringify(carInput)));
-        return await this.put(`/car/update/${idCar}`, carInput);
+        return await this.put(`/car/update/${id_car}`, carInput);
     }
 
-    async deleteCar(idCar) {
-        return await this.delete(`/car/delete/${idCar}`);
+    async deleteCar(id_car) {
+        return await this.delete(`/car/delete/${id_car}`);
     }
 
     // Category
@@ -49,7 +49,7 @@ class CarAPI extends RESTDataSource {
     }
 
     // City
-    async listCategory() {
+    async listCity() {
         return await this.get(`/cities`);
     }
 
@@ -59,8 +59,8 @@ class CarAPI extends RESTDataSource {
         return await this.post(`/cars/filter/availability/`, availabilityFilter);
     }
 
-    async filterForCar(idCar) {
-        return await this.get(`/availability/${idCar}`);
+    async filterForCar(id_car) {
+        return await this.get(`/availability/${id_car}`);
     }
 
     async listAvailability() {

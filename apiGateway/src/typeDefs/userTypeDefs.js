@@ -12,26 +12,26 @@ const userTypeDefs = gql`
         password: String!
     }
     input SignUpInput {
-        firstName: String!
-        lastName: String!
+        first_name: String!
+        last_name: String!
         document: String!
         password: String!
         email: String!
-        birthDate: String!
+        birth_date: String!
         cellphone: String!
         gender: Gender!
     }
     type User {
-        id: Int!
-        firstName: String!
-        lastName: String!
+        id_user: Int!
+        first_name: String!
+        last_name: String!
         document: String!
         password: String!
         email: String!
-        birthDate: String!
+        birth_date: String!
         cellphone: String!
         gender: Gender!
-        isSuperUser: Boolean!
+        is_superuser: Boolean!
     }
 
     enum Gender {

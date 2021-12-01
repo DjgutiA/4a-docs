@@ -1,12 +1,12 @@
 const { gql } = require('apollo-server');
 const cityTypeDefs = gql`
     type City {
-        idCity: Int!
-        nameCity: String!
+        id_city: Int!
+        name_city: String!
     }
 
     extend type Query {
-        listCity(): [City]
+        listCity: [City]!
     }
 
 `;

@@ -1,7 +1,7 @@
 const { gql } = require('apollo-server');
 const rentalTypeDefs = gql`
     type Rental {
-        idRental: String!
+        id: String!
         idUser: Int!
         idCar: Int!
         rentalDate: String!
@@ -19,7 +19,7 @@ const rentalTypeDefs = gql`
     }
 
     input RentalUpdateInput {
-        idRental: String!
+        id: String!
         idUser: Int!
         idCar: Int!
         startDate: String!
