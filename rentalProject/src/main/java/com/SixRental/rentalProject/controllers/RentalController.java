@@ -29,6 +29,10 @@ public class RentalController {
 
     @DeleteMapping("/rental/{id}")
     Map<String, String> deleteRental(@PathVariable String id){
+        Rental rental = rentalRepository.findById(id).orElse(null);
+        if (rental == null){
+            throw new RentalNotFoundException("No se encontró reserva con el id " + id);
+        }
         rentalRepository.deleteById(id);
         HashMap<String, String> response = new HashMap<>();
         response.put("response", id + " deleted");
