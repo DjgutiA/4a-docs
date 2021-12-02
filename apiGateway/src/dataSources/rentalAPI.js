@@ -15,7 +15,7 @@ class RentalAPI extends RESTDataSource {
         return await this.get(`/rentals/car/${idCar}`);
     }
 
-    async listRentalForCar(idRental) {
+    async getRental(idRental) {
         return await this.get(`/rental/${idRental}`);
     }
 

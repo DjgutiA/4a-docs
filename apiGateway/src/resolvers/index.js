@@ -1,6 +1,9 @@
 const userResolver = require('./userResolver');
 const categoryResolver = require('./categoryResolver');
 const cityResolver = require('./cityResolver');
+const availabilityResolver = require('./availabilityResolver')
+const carResolver = require('./carResolver')
+const rentalResolver = require('./rentalResolver')
 const lodash = require('lodash');
-const resolvers = lodash.merge(userResolver, categoryResolver, cityResolver);
+const resolvers = lodash.merge(userResolver, categoryResolver, cityResolver, availabilityResolver, carResolver, rentalResolver);
 module.exports = resolvers;

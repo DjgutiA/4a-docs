@@ -29,12 +29,12 @@ const rentalTypeDefs = gql`
 
     extend type Query {
         listRentalForUser(idUser: Int!): [Rental]
-        listRentalForCar(idCar: Int!): [Rental]
-        getRental(idRental: String!): Rental
+        listRentalForCar(idCar: Int!, idUser: Int!): [Rental]
+        getRental(idRental: String!, idUser: Int!): Rental
     }
     extend type Mutation {
         createRental(rentalInput: RentalInput!): Rental
         updateRental(rentalUpdateInput: RentalUpdateInput!): Rental
-        deleteRental(idRental: String!): Response
+        deleteRental(idRental: String!, idUser: Int!): Response
     }`;
 module.exports = rentalTypeDefs;

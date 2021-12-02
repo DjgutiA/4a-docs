@@ -8,8 +8,8 @@ const carTypeDefs = gql`
         transmission: Transmission!
         air_conditioning: Boolean!
         suitcase: Suitcase!
-        category: Category!
-        city: City!
+        category_id: Category!
+        city_id: City!
         price: Int!
         brand: String!
         model: String!
@@ -41,8 +41,8 @@ const carTypeDefs = gql`
         city: Int
         brand: String
         model: String
-        priceLte: Int
-        priceGte: Int
+        price__lte: Int
+        price__gte: Int
     }
 
     enum Transmission {

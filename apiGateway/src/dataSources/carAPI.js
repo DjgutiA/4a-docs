@@ -64,7 +64,7 @@ class CarAPI extends RESTDataSource {
     }
 
     async listAvailability() {
-        return await this.get(`/cars/filter/availability/`);
+        return await this.get(`/availabilities/`);
     }
 
     async createAvailability(availabilityInput) {
