@@ -6,7 +6,7 @@ const cityTypeDefs = gql`
     }
 
     extend type Query {
-        listCity: [City]!
+        listCity(idUser: Int!): [City]
     }
 
 `;

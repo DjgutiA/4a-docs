@@ -59,7 +59,7 @@ class CarAPI extends RESTDataSource {
         return await this.post(`/cars/filter/availability/`, availabilityFilter);
     }
 
-    async filterForCar(id_car) {
+    async filterAvailabilityByCar(id_car) {
         return await this.get(`/availability/${id_car}`);
     }
 

@@ -1,7 +1,10 @@
 const categoryResolver = {
     Query: {
-        listCategory: (_, __, { dataSources }) => {
-            return dataSources.carAPI.listCategory();
+        listCategory: (_, { id_user }, { dataSources, userIdToken },) => {
+            if (id_user == userIdToken)
+                return dataSources.carAPI.listCategory();
+            else
+                null
         }
     },
     Mutation: {}

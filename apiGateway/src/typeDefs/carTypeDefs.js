@@ -66,16 +66,16 @@ const carTypeDefs = gql`
     
 
     extend type Query {
-        filterCar(carFilter: CarFilter!): [Car]
-        listCar: [Car]
-        getCar(license_plate: String!): Car
-        listBrands: Brands
-        listModel(brand: String!): Models
+        filterCar(carFilter: CarFilter!, idUser: Int!): [Car]
+        listCar(idUser: Int!): [Car]
+        getCar(license_plate: String!, idUser: Int!): Car
+        listBrands(idUser: Int!): Brands
+        listModel(brand: String!, idUser: Int!): Models
     }
     extend type Mutation {
-        createCar(carInput: CarInput!): Response
-        updateCar(id_car: Int!, carInput: CarInput!): Car
-        deleteCar(id_car: Int!): Response
+        createCar(carInput: CarInput!, idUser: Int!): Response
+        updateCar(id_car: Int!, carInput: CarInput!, idUser: Int!): Car
+        deleteCar(id_car: Int!, idUser: Int!): Response
     }
 
 `;

@@ -23,13 +23,13 @@ const availabilityTypeDefs = gql`
     }
 
     extend type Query {
-        filterCarAvailability(availabilityFilter: AvailabilityFilter): [Car]
-        filterForCar(id_car: Int!): [Availability]
-        listAvailability: [Availability]
+        filterCarAvailability(availabilityFilter: AvailabilityFilter, idUser: Int!): [Car]
+        filterAvailabilityByCar(id_car: Int!, idUser: Int!): [Availability]
+        listAvailability(idUser: Int): [Availability]
     }
     extend type Mutation {
-        createAvailability(availabilityInput: AvailabilityInput!): [Availability]
-        updateAvailability(availabilityInput: AvailabilityInput!): Response
+        createAvailability(availabilityInput: AvailabilityInput!, idUser: Int): [Availability]
+        updateAvailability(availabilityInput: AvailabilityInput!, idUser: Int): Response
     }
 `;
 module.exports = availabilityTypeDefs;

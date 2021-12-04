@@ -28,8 +28,8 @@ const rentalTypeDefs = gql`
     }
 
     extend type Query {
-        listRentalForUser(idUser: Int!): [Rental]
-        listRentalForCar(idCar: Int!, idUser: Int!): [Rental]
+        listRentalByUser(idUser: Int!): [Rental]
+        listRentalByCar(idCar: Int!, idUser: Int!): [Rental]
         getRental(idRental: String!, idUser: Int!): Rental
     }
     extend type Mutation {

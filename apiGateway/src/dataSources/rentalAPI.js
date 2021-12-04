@@ -7,11 +7,11 @@ class RentalAPI extends RESTDataSource {
         this.baseURL = serverConfig.rentalApiUrl;
     }
 
-    async listRentalForUser(idUser) {
+    async listRentalByUser(idUser) {
         return await this.get(`/rentals/user/${idUser}`);
     }
 
-    async listRentalForCar(idCar) {
+    async listRentalByCar(idCar) {
         return await this.get(`/rentals/car/${idCar}`);
     }
 

@@ -1,23 +1,39 @@
 const availabilityResolver = {
     Query: {
-        filterCarAvailability: (_, { availabilityFilter }, { dataSources }) => {
-            return dataSources.carAPI.filterCarAvailability(availabilityFilter);
+        filterCarAvailability: (_, { availabilityFilter, idUser }, { dataSources, userIdToken }) => {
+            if (idUser == userIdToken)
+                return dataSources.carAPI.filterCarAvailability(availabilityFilter);
+            else
+                return null
         },
-        filterForCar: (_, { id_car }, { dataSources }) => {
-            return dataSources.carAPI.filterForCar(id_car);
+        filterAvailabilityByCar: (_, { id_car, idUser }, { dataSources, userIdToken }) => {
+            if (idUser == userIdToken)
+                return dataSources.carAPI.filterAvailabilityByCar(id_car);
+            else
+                return null
         },
-        listAvailability: (_, __, { dataSources }) => {
-            return dataSources.carAPI.listAvailability();
+        listAvailability: (_, { idUser }, { dataSources, userIdToken }) => {
+            if (idUser == userIdToken)
+                return dataSources.carAPI.listAvailability();
+            else
+                return null
         },
 
     },
     Mutation: {
-        createAvailability: (_, { availabilityInput }, { dataSources }) => {
-            return dataSources.carAPI.createAvailability(availabilityInput);
+        createAvailability: async (_, { availabilityInput, idUser }, { dataSources, userIdToken }) => {
+            isAdmin = (await dataSources.userAPI.userDetailById(idUser)).is_superuser
+            if (idUser == userIdToken && isAdmin)
+                return dataSources.carAPI.createAvailability(availabilityInput);
+            else
+                return null
         },
 
-        updateAvailability: (_, { availabilityInput }, { dataSources }) => {
-            return dataSources.carAPI.updateAvailability(availabilityInput);
+        updateAvailability: (_, { availabilityInput, idUser }, { dataSources, userIdToken }) => {
+            if (idUser == userIdToken)
+                return dataSources.carAPI.updateAvailability(availabilityInput);
+            else
+                null
         },
 
     }
