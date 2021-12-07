@@ -1,30 +1,57 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div class="body-main">
+    <router-view />
   </div>
-  <router-view/>
 </template>
 
+<script>
+export default {
+  name: "App",
+
+  data: function () {
+    return {
+      is_auth: false,
+    };
+  },
+  methods: {
+    verifyAuth: function () {
+      this.is_auth = localStorage.getItem("isAuth") || false;
+      this.is_auth = true;
+      if (this.is_auth == false) this.$router.push({ name: "login" });
+      else this.$router.push({ name: "Home" });
+    },
+    loadLogIn: function () {
+      this.$router.push({ name: "login" });
+    },
+  },
+  created: function () {
+    this.verifyAuth();
+  },
+};
+</script>
+
+<style src="@/assets/css/normalize.css">
+</style>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+:root {
+  --pink-color: #d1345b;
+  --dark-blue-color: #141e28;
+  --light-blue-color: #7c8f99;
+  --white-color: #f3f8fa;
 }
 
-#nav {
-  padding: 30px;
+* {
+  font-family: "Montserrat";
+  font-size: 50px;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+html {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+body {
+  background-color: var(--white-color);
 }
 </style>

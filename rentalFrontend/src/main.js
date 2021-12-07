@@ -7,7 +7,7 @@ import { setContext } from 'apollo-link-context'
 
 const httpLink = createHttpLink({
     //pendiente por la url del apigateway
-    uri: 'https://mision-tic-api-gateway.herokuapp.com/',
+    uri: 'https://apigateway-sixrental.herokuapp.com/',
 })
 
 const authLink = setContext((_, { headers }) => {
