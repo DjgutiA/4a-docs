@@ -1,21 +1,23 @@
 <template>
-  <div class="hero-section">
-    <div class="hero-heading">
+  <div class="body">
+    <section class="hero-section">
+      <div class="hero-heading">
+        <img
+          class="logo"
+          src="../assets/images/logo_transparent.png"
+          alt="Logo Six Rental"
+        />
+        <h1 class="hero-title">¿NECESITAS UN AUTO ECONÓMICO?</h1>
+        <h2>¡Encontremos uno <span>perfecto para ti!</span></h2>
+      </div>
       <img
-        class="logo"
-        src="../assets/images/logo_transparent.png"
-        alt="Logo Six Rental"
+        id="car"
+        class="car"
+        src="../assets/images/2019-mercedes-benz-gls-class-450-suv-angular-front.png"
+        alt="Mercedes SUV 450"
       />
-      <h1 class="hero-title">¿NECESITAS UN AUTO ECONÓMICO?</h1>
-      <h2>¡Encontremos uno <span>perfecto para ti!</span></h2>
-    </div>
-    <img
-      id="car"
-      class="car car-image"
-      src="../assets/images/2019-mercedes-benz-gls-class-450-suv-angular-front.png"
-      alt="Mercedes SUV 450"
-    />
-    <button id="submit" type="submit">Reserva Ya</button>
+      <button id="submit" type="submit">Reserva Ya</button>
+    </section>
 
     <h3 class="vehicles-title" id="vehicles-title">Nuestros vehículos</h3>
 
@@ -78,11 +80,13 @@
     </section>
   </div>
 </template>
+
 <script>
 export default {
   name: "Home",
 };
 </script>
+
 
 <style scoped>
 .hero-section {
@@ -131,7 +135,7 @@ h2 {
 
 .hero-section .car {
   margin-left: 45%;
-  margin-top: 10%;
+  margin-top: 7%;
   width: 50%;
 }
 

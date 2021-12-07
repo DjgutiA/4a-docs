@@ -3,15 +3,28 @@
     <ul>
       <li><a href="#vehicles-title">Vehículos</a></li>
       <li><a href="#about-us">Sobre Nosotros</a></li>
-      <li><router-link to="/LogIn">Iniciar Sesión</router-link></li>
-      <li><router-link to="/SignUp">Registrarse</router-link></li>
+      <li><a href="#" @click="logout">Cerrar Sesión</a></li>
     </ul>
   </div>
 </template>
 
 <script>
+import Swal from "sweetalert2";
+
 export default {
   name: "Navbar",
+  methods: {
+    logout: async function () {
+      localStorage.clear();
+      await Swal.fire({
+        icon: "info",
+        title: "Hasta Pronto",
+        text: "Sesión Cerrada",
+        confirmButtonColor: "#141e28",
+      });
+      window.location.reload();
+    },
+  },
 };
 </script>
 

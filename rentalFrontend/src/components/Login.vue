@@ -4,12 +4,12 @@
       <h1 class="logIn-title">Inicia Sesión</h1>
       <form action="" class="logIn">
         <label>Usuario</label>
-        <input type="text" />
+        <input type="text" v-model="user.document" required />
 
         <label>Contraseña</label>
-        <input type="text" />
+        <input type="password" v-model="user.password" required />
 
-        <button type="submit">Iniciar Sesión</button>
+        <button type="submit" @click="login">Iniciar Sesión</button>
       </form>
 
       <p class="cta">
@@ -27,15 +27,58 @@
 </template>
 
 <script>
+import jwt_decode from "jwt-decode";
+import gql from "graphql-tag";
+import Swal from "sweetalert2";
+
 export default {
   name: "Login",
   data: function () {
     return {
       user: {
-        username: "",
+        document: "",
         password: "",
       },
     };
+  },
+  methods: {
+    login: async function () {
+      if (this.user.document != "" && this.user.password != "") {
+        await this.$apollo
+          .mutate({
+            mutation: gql`
+              mutation Mutation($credentials: CredentialsInput!) {
+                logIn(credentials: $credentials) {
+                  refresh
+                  access
+                }
+              }
+            `,
+            variables: {
+              credentials: this.user,
+            },
+          })
+          .then((result) => {
+            let userId = jwt_decode(
+              result.data.logIn.access
+            ).user_id.toString();
+            let dataLogIn = {
+              userId: userId,
+              token_access: result.data.logIn.access,
+              token_refresh: result.data.logIn.refresh,
+            };
+            this.$emit("completedLogIn", dataLogIn);
+          })
+          .catch((error) => {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "ERROR 401: Credenciales Incorrectas.",
+              confirmButtonColor: "#141e28",
+            });
+          });
+      }
+    },
   },
 };
 </script>
@@ -48,13 +91,8 @@ export default {
   --white-color: #f3f8fa;
 }
 
-* {
-  font-family: Montserrat;
-  font-size: 50px;
-}
-
-body {
-  background-image: url("/images/fondoLogIn.png");
+.login {
+  background-image: url("../assets/images/fondoLogin.png");
   background-size: cover;
   height: 100vh;
   width: 100vw;
@@ -72,11 +110,10 @@ body {
 }
 
 .logIn-title {
-  margin: 0;
   font-size: 70%;
   font-weight: bold;
   color: var(--pink-color);
-  margin: 25% 0 10% 0;
+  margin: 40% 0 10% 0;
 }
 
 .logIn {
@@ -86,22 +123,24 @@ body {
 }
 
 .logIn label {
-  font-size: 35%;
+  font-size: 40%;
   color: var(--dark-blue-color);
   margin: 2% 0 0 0;
   width: 95%;
   text-align: left;
 }
 
-.logIn input[type="text"] {
+.logIn input[type="text"],
+input[type="password"] {
   width: 95%;
   height: 45px;
   border-radius: 10px;
   border: 2px solid var(--dark-blue-color);
   background-color: var(--white-color);
   color: var(--dark-blue-color);
-  margin: 2% 0 2% 0;
+  margin: 6% 0 2% 0;
   font-size: 40%;
+  padding-left: 5%;
 }
 
 .logIn button {
@@ -119,12 +158,11 @@ body {
 
 .cta {
   margin: 0;
-  font-size: 35%;
+  font-size: 40%;
   color: var(--dark-blue-color);
 }
 
 .cta span a {
-  font-size: 35%;
   text-decoration: none;
   color: var(--pink-color);
   font-weight: bold;

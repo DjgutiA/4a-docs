@@ -1,10 +1,15 @@
 <template>
   <div class="body-main">
-    <router-view />
+    <router-view
+      v-on:completedLogIn="completedLogIn"
+      v-on:completedSignUp="completedSignUp"
+      v-on:loadLogIn="loadLogIn"
+    ></router-view>
   </div>
 </template>
 
 <script>
+import Swal from "sweetalert2";
 export default {
   name: "App",
 
@@ -14,9 +19,30 @@ export default {
     };
   },
   methods: {
+    completedLogIn: function (data) {
+      localStorage.setItem("isAuth", true);
+      localStorage.setItem("userId", data.userId);
+      localStorage.setItem("token_access", data.token_access);
+      localStorage.setItem("token_refresh", data.token_refresh);
+      Swal.fire({
+        icon: "success",
+        title: "Bienvenido",
+        text: "Autenticación Exitosa",
+        confirmButtonColor: "#141e28",
+      });
+      this.verifyAuth();
+    },
+    completedSignUp: function (data) {
+      Swal.fire({
+        icon: "success",
+        title: "Felicidades",
+        text: "Registro Exitoso",
+        confirmButtonColor: "#141e28",
+      });
+      this.completedLogIn(data);
+    },
     verifyAuth: function () {
       this.is_auth = localStorage.getItem("isAuth") || false;
-      this.is_auth = true;
       if (this.is_auth == false) this.$router.push({ name: "login" });
       else this.$router.push({ name: "Home" });
     },
@@ -41,17 +67,18 @@ export default {
   --white-color: #f3f8fa;
 }
 
-* {
+html {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
   font-family: "Montserrat";
   font-size: 50px;
 }
 
-html {
-  overflow-y: scroll;
-  scroll-behavior: smooth;
-}
-
 body {
   background-color: var(--white-color);
+}
+
+.swal2-popup {
+  font-size: 40% !important;
 }
 </style>

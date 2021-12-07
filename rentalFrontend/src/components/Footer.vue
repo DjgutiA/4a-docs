@@ -1,42 +1,40 @@
 <template>
   <div class="footer">
-    <footer id="about-us">
-      <div class="footer-info-section">
-        <div>
-          <label class="section-title six-title">Six Rental</label>
-          <p>
-            Moving to a world where the opportunities to grow become familiar to
-            everyone
-          </p>
-        </div>
-        <div>
-          <label class="section-title">Información</label>
-          <p>Sobre nosotros</p>
-          <p>Servicios</p>
-          <p>Términos y condiciones</p>
-          <p>Mejor precio garantizado</p>
-          <p>Políticas de privacidad</p>
-        </div>
-        <div>
-          <label class="section-title">Servicio al cliente</label>
-          <p>FAQ</p>
-          <p>Opciones de pago</p>
-          <p>Tips para reservar</p>
-          <p>Cómo funciona</p>
-          <p>Contáctanos</p>
-        </div>
-        <div>
-          <label class="section-title">¿Tienes alguna pregunta?</label>
-          <p>info@sixrental.com</p>
-          <p>+2 392 3929 210</p>
-        </div>
+    <div class="footer-info-section">
+      <div>
+        <label class="section-title six-title">Six Rental</label>
+        <p>
+          Moving to a world where the opportunities to grow become familiar to
+          everyone
+        </p>
       </div>
+      <div>
+        <label class="section-title">Información</label>
+        <p>Sobre nosotros</p>
+        <p>Servicios</p>
+        <p>Términos y condiciones</p>
+        <p>Mejor precio garantizado</p>
+        <p>Políticas de privacidad</p>
+      </div>
+      <div>
+        <label class="section-title">Servicio al cliente</label>
+        <p>FAQ</p>
+        <p>Opciones de pago</p>
+        <p>Tips para reservar</p>
+        <p>Cómo funciona</p>
+        <p>Contáctanos</p>
+      </div>
+      <div>
+        <label class="section-title">¿Tienes alguna pregunta?</label>
+        <p>info@sixrental.com</p>
+        <p>+2 392 3929 210</p>
+      </div>
+    </div>
 
-      <p class="copyright-advice">
-        Copyright ©2021 Todos los derechos reservados | Realizado por: equipo 6,
-        grupo P10, Mision TIC
-      </p>
-    </footer>
+    <p class="copyright-advice">
+      Copyright ©2021 Todos los derechos reservados | Realizado por: equipo 6,
+      grupo P10, Mision TIC
+    </p>
   </div>
 </template>
 
@@ -47,7 +45,7 @@ export default {
 </script>
 
 <style scoped>
-footer {
+.footer {
   height: 450px;
   margin-top: 10%;
   background-color: var(--dark-blue-color);
@@ -79,7 +77,7 @@ footer {
 }
 
 .copyright-advice {
-  margin: 4% 0 5% 0;
+  margin: 1% 0 5% 0;
   font-weight: 500;
 }
 
