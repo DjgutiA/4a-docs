@@ -17,7 +17,6 @@ export default {
     HeroSection,
     Navbar,
     Footer,
-    Navbar,
   },
 };
 </script>

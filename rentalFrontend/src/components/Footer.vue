@@ -47,7 +47,6 @@ export default {
 <style scoped>
 .footer {
   height: 450px;
-  margin-top: 10%;
   background-color: var(--dark-blue-color);
   display: flex;
   flex-direction: column;

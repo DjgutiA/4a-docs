@@ -1,5 +1,5 @@
 <template>
-  <div class="body">
+  <div class="body-home">
     <section class="hero-section">
       <div class="hero-heading">
         <img
@@ -18,17 +18,23 @@
       />
       <button id="submit" type="submit">Reserva Ya</button>
     </section>
+    <CarFilter></CarFilter>
     <h3 class="vehicles-title" id="vehicles-title">Nuestros vehículos</h3>
 
-    <section class="cars-section" v-for="car in listCar" v-bind:key="car.id">
-      <div class="card">
+    <section v-if="listCar[0]" class="cars-section">
+      <div
+        class="card"
+        v-for="index in 12"
+        v-bind:key="index"
+        @click="selectCar(index)"
+      >
         <div class="container-info">
           <div class="vehicle-info">
-            <h3 class="brand">{{ car.brand }}</h3>
-            <h4 class="model">{{ car.model }}</h4>
+            <h3 class="brand">{{ listCar[index].brand }}</h3>
+            <h4 class="model">{{ listCar[index].model }}</h4>
             <div class="price-container">
               <p class="from">Desde</p>
-              <p class="price">${{ car.price }}</p>
+              <p class="price">${{ formatterNumber(listCar[index].price) }}</p>
             </div>
           </div>
 
@@ -39,7 +45,8 @@
                 alt="LogSobre Nosotros cambios"
                 class="engine"
               />
-              <span>{{ car.transmission }}</span>
+              <span v-if="listCar[index].transmission === 'M'">Manual</span>
+              <span v-else>Automático</span>
             </div>
 
             <div class="feature">
@@ -48,7 +55,9 @@
                 alt="Logo caja"
                 class="suitcase"
               />
-              <span>{{ car.suitcase }}</span>
+              <span v-if="listCar[index].suitcase === 'S'">Pequeño</span>
+              <span v-else-if="listCar[index].suitcase === 'M'">Mediano</span>
+              <span v-else>Grande</span>
             </div>
 
             <div class="feature">
@@ -57,7 +66,9 @@
                 alt="Logo aire acondicionado"
                 class="air-conditioning"
               />
-              <span>Aire:{{ car.air_conditioning }}</span>
+              <span>Aire: </span>
+              <span v-if="listCar[index].air_conditioning">Si</span>
+              <span v-else>No</span>
             </div>
 
             <div class="feature">
@@ -66,13 +77,13 @@
                 alt="Logo asiento vehiculo"
                 class="passengers"
               />
-              <span>{{ car.passengers }} asientos</span>
+              <span>{{ listCar[index].passengers }} asientos</span>
             </div>
           </div>
         </div>
         <img
-          :src="'../assets/images/cars/' + car.model + '.png'"
-          :alt="'Imagen ' + car.brand + ' ' + car.model"
+          :src="require(`../assets/images/cars/${listCar[index].model}.png`)"
+          :alt="'Imagen ' + listCar[index].brand + ' ' + listCar[index].model"
           class="car-image"
         />
       </div>
@@ -83,6 +94,7 @@
 <script>
 import Swal from "sweetalert2";
 import gql from "graphql-tag";
+import CarFilter from "@/components/CarFilter";
 
 export default {
   name: "Home",
@@ -90,6 +102,23 @@ export default {
     return {
       listCar: [],
     };
+  },
+  components: {
+    CarFilter,
+  },
+  methods: {
+    selectCar: function (indexcar) {
+      localStorage.setItem("id_car", this.listCar[indexcar].id_car);
+      localStorage.setItem(
+        "license_plate",
+        this.listCar[indexcar].license_plate
+      );
+      this.$router.push({ name: "carDetailed" });
+    },
+    formatterNumber: function (value) {
+      var formatter = new Intl.NumberFormat("es-CO", {});
+      return formatter.format(value);
+    },
   },
   apollo: {
     listCar: {
@@ -128,6 +157,9 @@ export default {
 
 
 <style scoped>
+.body-home {
+  padding-bottom: 10%;
+}
 .hero-section {
   background-image: url("../assets/images/FondoPortada.png");
   background-size: cover;
@@ -312,7 +344,7 @@ img {
 }
 
 .feature span {
-  font-size: 20%;
+  font-size: 40%;
   color: var(--white-color);
   margin: 0;
 }
