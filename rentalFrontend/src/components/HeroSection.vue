@@ -18,18 +18,17 @@
       />
       <button id="submit" type="submit">Reserva Ya</button>
     </section>
-
     <h3 class="vehicles-title" id="vehicles-title">Nuestros vehículos</h3>
 
-    <section class="cars-section">
+    <section class="cars-section" v-for="car in listCar" v-bind:key="car.id">
       <div class="card">
         <div class="container-info">
           <div class="vehicle-info">
-            <h3 class="brand">Chevrolet</h3>
-            <h4 class="model">Beat</h4>
+            <h3 class="brand">{{ car.brand }}</h3>
+            <h4 class="model">{{ car.model }}</h4>
             <div class="price-container">
               <p class="from">Desde</p>
-              <p class="price">95.000$</p>
+              <p class="price">${{ car.price }}</p>
             </div>
           </div>
 
@@ -40,7 +39,7 @@
                 alt="LogSobre Nosotros cambios"
                 class="engine"
               />
-              <span>Mecanico</span>
+              <span>{{ car.transmission }}</span>
             </div>
 
             <div class="feature">
@@ -49,7 +48,7 @@
                 alt="Logo caja"
                 class="suitcase"
               />
-              <span>Grande</span>
+              <span>{{ car.suitcase }}</span>
             </div>
 
             <div class="feature">
@@ -58,7 +57,7 @@
                 alt="Logo aire acondicionado"
                 class="air-conditioning"
               />
-              <span>Aire:Sí</span>
+              <span>Aire:{{ car.air_conditioning }}</span>
             </div>
 
             <div class="feature">
@@ -67,13 +66,13 @@
                 alt="Logo asiento vehiculo"
                 class="passengers"
               />
-              <span>5 asientos</span>
+              <span>{{ car.passengers }} asientos</span>
             </div>
           </div>
         </div>
         <img
-          src="../assets/images/cars/BEAT.png"
-          alt="Imagen Chevrolet Beat"
+          :src="'../assets/images/cars/' + car.model + '.png'"
+          :alt="'Imagen ' + car.brand + ' ' + car.model"
           class="car-image"
         />
       </div>
@@ -82,8 +81,48 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
+import gql from "graphql-tag";
+
 export default {
   name: "Home",
+  data: function () {
+    return {
+      listCar: [],
+    };
+  },
+  apollo: {
+    listCar: {
+      query: gql`
+        query Query($idUser: Int!) {
+          listCar(idUser: $idUser) {
+            id_car
+            license_plate
+            passengers
+            transmission
+            suitcase
+            air_conditioning
+            category_id {
+              id_category
+              name_category
+            }
+            city_id {
+              id_city
+              name_city
+            }
+            price
+            brand
+            model
+          }
+        }
+      `,
+      variables() {
+        return {
+          idUser: parseInt(localStorage.getItem("userId"), 10),
+        };
+      },
+    },
+  },
 };
 </script>
 

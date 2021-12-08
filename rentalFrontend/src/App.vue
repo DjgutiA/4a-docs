@@ -11,7 +11,6 @@
 <script>
 import Swal from "sweetalert2";
 import gql from "graphql-tag";
-import { useQuery, useResult } from "@vue/apollo-composable";
 
 export default {
   name: "App",
@@ -26,21 +25,19 @@ export default {
     };
   },
   methods: {
-    completedLogIn: function (data) {
+    completedLogIn: async function (data) {
       localStorage.setItem("isAuth", true);
       localStorage.setItem("userId", data.userId);
       localStorage.setItem("token_access", data.token_access);
       localStorage.setItem("token_refresh", data.token_refresh);
 
       this.$apollo.queries.userDetailById.skip = false;
-      this.$apollo.queries.userDetailById.refetch();
-      console.log(this.$apollo.queries.userDetailById);
-      console.log(this.$apollo.queries.userDetailById);
+      const result = await this.$apollo.queries.userDetailById.refetch();
       localStorage.setItem(
         "is_superuser",
-        this.$apollo.queries.userDetailById.is_superuser
+        result.data.userDetailById.is_superuser
       );
-      localStorage.setItem("first_name", this.userDetailById.first_name);
+      localStorage.setItem("first_name", result.data.userDetailById.first_name);
 
       Swal.fire({
         icon: "success",
