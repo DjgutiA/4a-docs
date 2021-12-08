@@ -9,7 +9,7 @@
       <button class="">Seleccionar</button>
     </div>
     <div class="car-filter">
-      <h3>Escoge las caracteristicas del carro</h3>
+      <h3>Escoge las caracteristicas del vehículo</h3>
       <label>Pasajeros</label>
       <select v-model="carFilter.passengers">
         <option value="4">4</option>
@@ -46,8 +46,25 @@
         <option>{{ city.name_city }}</option>
       </select>
       <label>Marca</label>
+      <select
+        v-for="brand in listBrands.brands"
+        v-bind:key="brand"
+        v-model="carFilter.brand"
+      >
+        <option>{{ brand }}</option>
+      </select>
       <label>Modelo</label>
+      <select
+        v-for="model in listModel.models"
+        v-bind:key="model"
+        v-model="carFilter.model"
+      >
+        <option>{{ model }}</option>
+      </select>
       <label>Precio entre</label>
+      <input type="number" v-model="carFilter.price__gte" /><label>y</label
+      ><input type="number" v-model="carFilter.price__lte" />
+      <button class="">Filtrar</button>
     </div>
   </div>
 </template>
@@ -76,7 +93,7 @@ export default {
       listCategory: [],
       listCity: [],
       listBrands: "",
-      listModels: "",
+      listModel: "",
     };
   },
 };
