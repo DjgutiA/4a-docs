@@ -2,19 +2,19 @@
   <div class="login">
     <aside class="logIn-container">
       <h1 class="logIn-title">Inicia Sesión</h1>
-      <form action="" class="logIn">
+      <form class="logIn" v-on:submit.prevent="login">
         <label>Usuario</label>
         <input type="text" v-model="user.document" required />
 
         <label>Contraseña</label>
         <input type="password" v-model="user.password" required />
 
-        <button type="submit" @click="login">Iniciar Sesión</button>
+        <button type="submit">Iniciar Sesión</button>
       </form>
 
       <p class="cta">
         ¿No tienes una cuenta?<span
-          ><a href="SignUp.html"> ¡Regístrate!</a></span
+          ><a @click="toSingup"> ¡Regístrate!</a></span
         >
       </p>
     </aside>
@@ -78,6 +78,9 @@ export default {
             });
           });
       }
+    },
+    toSingup: function () {
+      this.$router.push({ name: "signup" });
     },
   },
 };
@@ -166,6 +169,7 @@ input[type="password"] {
   text-decoration: none;
   color: var(--pink-color);
   font-weight: bold;
+  cursor: pointer;
 }
 
 .logo-container {
