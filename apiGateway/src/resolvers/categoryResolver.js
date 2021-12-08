@@ -1,7 +1,7 @@
 const categoryResolver = {
     Query: {
-        listCategory: (_, { id_user }, { dataSources, userIdToken },) => {
-            if (id_user == userIdToken)
+        listCategory: (_, { idUser }, { dataSources, userIdToken },) => {
+            if (idUser == userIdToken)
                 return dataSources.carAPI.listCategory();
             else
                 null

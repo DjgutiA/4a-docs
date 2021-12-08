@@ -1,7 +1,7 @@
 const cityResolver = {
     Query: {
-        listCity: (_, { id_user }, { dataSources, userIdToken },) => {
-            if (id_user == userIdToken)
+        listCity: (_, { idUser }, { dataSources, userIdToken },) => {
+            if (idUser == userIdToken)
                 return dataSources.carAPI.listCity();
             else
                 return null;
