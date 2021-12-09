@@ -18,23 +18,23 @@
       />
       <button id="submit" type="submit">Reserva Ya</button>
     </section>
-    <CarFilter></CarFilter>
+    <CarFilter v-on:results="results"></CarFilter>
     <h3 class="vehicles-title" id="vehicles-title">Nuestros vehículos</h3>
 
     <section v-if="listCar[0]" class="cars-section">
       <div
         class="card"
-        v-for="index in 12"
-        v-bind:key="index"
-        @click="selectCar(index)"
+        v-for="car in listCar"
+        v-bind:key="car.id_car"
+        @click="selectCar(car)"
       >
         <div class="container-info">
           <div class="vehicle-info">
-            <h3 class="brand">{{ listCar[index].brand }}</h3>
-            <h4 class="model">{{ listCar[index].model }}</h4>
+            <h3 class="brand">{{ car.brand }}</h3>
+            <h4 class="model">{{ car.model }}</h4>
             <div class="price-container">
               <p class="from">Desde</p>
-              <p class="price">${{ formatterNumber(listCar[index].price) }}</p>
+              <p class="price">${{ formatterNumber(car.price) }}</p>
             </div>
           </div>
 
@@ -45,7 +45,7 @@
                 alt="LogSobre Nosotros cambios"
                 class="engine"
               />
-              <span v-if="listCar[index].transmission === 'M'">Manual</span>
+              <span v-if="car.transmission === 'M'">Manual</span>
               <span v-else>Automático</span>
             </div>
 
@@ -55,8 +55,8 @@
                 alt="Logo caja"
                 class="suitcase"
               />
-              <span v-if="listCar[index].suitcase === 'S'">Pequeño</span>
-              <span v-else-if="listCar[index].suitcase === 'M'">Mediano</span>
+              <span v-if="car.suitcase === 'S'">Pequeño</span>
+              <span v-else-if="car.suitcase === 'M'">Mediano</span>
               <span v-else>Grande</span>
             </div>
 
@@ -67,7 +67,7 @@
                 class="air-conditioning"
               />
               <span>Aire: </span>
-              <span v-if="listCar[index].air_conditioning">Si</span>
+              <span v-if="car.air_conditioning">Si</span>
               <span v-else>No</span>
             </div>
 
@@ -77,17 +77,18 @@
                 alt="Logo asiento vehiculo"
                 class="passengers"
               />
-              <span>{{ listCar[index].passengers }} asientos</span>
+              <span>{{ car.passengers }} asientos</span>
             </div>
           </div>
         </div>
         <img
-          :src="require(`../assets/images/cars/${listCar[index].model}.png`)"
-          :alt="'Imagen ' + listCar[index].brand + ' ' + listCar[index].model"
+          :src="require(`../assets/images/cars/${car.model}.png`)"
+          :alt="'Imagen ' + car.brand + ' ' + car.model"
           class="car-image"
         />
       </div>
     </section>
+    <h1 v-else>Sin Resultados</h1>
   </div>
 </template>
 
@@ -107,49 +108,17 @@ export default {
     CarFilter,
   },
   methods: {
-    selectCar: function (indexcar) {
-      localStorage.setItem("id_car", this.listCar[indexcar].id_car);
-      localStorage.setItem(
-        "license_plate",
-        this.listCar[indexcar].license_plate
-      );
+    results: function (data) {
+      this.listCar = data;
+    },
+    selectCar: function (car) {
+      localStorage.setItem("id_car", car.id_car);
+      localStorage.setItem("license_plate", car.license_plate);
       this.$router.push({ name: "carDetailed" });
     },
     formatterNumber: function (value) {
       var formatter = new Intl.NumberFormat("es-CO", {});
       return formatter.format(value);
-    },
-  },
-  apollo: {
-    listCar: {
-      query: gql`
-        query Query($idUser: Int!) {
-          listCar(idUser: $idUser) {
-            id_car
-            license_plate
-            passengers
-            transmission
-            suitcase
-            air_conditioning
-            category_id {
-              id_category
-              name_category
-            }
-            city_id {
-              id_city
-              name_city
-            }
-            price
-            brand
-            model
-          }
-        }
-      `,
-      variables() {
-        return {
-          idUser: parseInt(localStorage.getItem("userId"), 10),
-        };
-      },
     },
   },
 };

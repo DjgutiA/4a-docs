@@ -13,63 +13,91 @@
       <h3>Escoge las caracteristicas del vehículo</h3>
       <div class="car-groups">
         <div class="car-filter-group">
-          <label>Pasajeros</label>
-          <select v-model="carFilter.passengers">
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-          </select>
-          <label>Trasmisión</label>
-          <select v-model="carFilter.transmission">
-            <option value="A">Automático</option>
-            <option value="M">Manual</option>
-          </select>
-          <label>Aire acondicionado</label>
-          <input type="checkbox" v-model="carFilter.air_conditioning" />
+          <div class="filter-pair">
+            <label>Pasajeros</label>
+            <select v-model="carFilter.passengers">
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
+          </div>
+          <div class="filter-pair">
+            <label>Aire acondicionado</label>
+            <input type="checkbox" v-model="carFilter.air_conditioning" />
+          </div>
+        </div>
+        <div class="car-filter-group">
+          <div class="filter-pair">
+            <label>Categoria</label>
+            <select v-model="carFilter.category">
+              <option
+                v-for="category in listCategory"
+                v-bind:key="category.id_category"
+                :value="category.id_category"
+              >
+                {{ category.name_category }}
+              </option>
+            </select>
+          </div>
+          <div class="filter-pair">
+            <label>Trasmisión</label>
+            <select v-model="carFilter.transmission">
+              <option value="A">Automático</option>
+              <option value="M">Manual</option>
+            </select>
+          </div>
         </div>
 
         <div class="car-filter-group">
-          <label>Maletero</label>
-          <select v-model="carFilter.suitcase">
-            <option value="S">Pequeño</option>
-            <option value="M">Mediano</option>
-            <option value="B">Grande</option>
-          </select>
-          <label>Categoria</label>
-          <select v-model="carFilter.category">
-            <option
-              v-for="category in listCategory"
-              v-bind:key="category.id_category"
-            >
-              {{ category.name_category }}
-            </option>
-          </select>
-          <label>Ciudad</label>
-          <select v-model="carFilter.city">
-            <option v-for="city in listCity" v-bind:key="city.id_city">
-              {{ city.name_city }}
-            </option>
-          </select>
+          <div class="filter-pair">
+            <label>Maletero</label>
+            <select v-model="carFilter.suitcase">
+              <option value="S">Pequeño</option>
+              <option value="M">Mediano</option>
+              <option value="B">Grande</option>
+            </select>
+          </div>
+          <div class="filter-pair">
+            <label>Ciudad</label>
+            <select v-model="carFilter.city">
+              <option
+                v-for="city in listCity"
+                v-bind:key="city.id_city"
+                :value="city.id_city"
+              >
+                {{ city.name_city }}
+              </option>
+            </select>
+          </div>
         </div>
 
         <div class="car-filter-group">
-          <label>Marca</label>
-          <select v-model="carFilter.brand" @change="runQuery">
-            <option v-for="brand in listBrands.brands" v-bind:key="brand">
-              {{ brand }}
-            </option>
-          </select>
-          <label>Modelo</label>
-          <select v-model="carFilter.model">
-            <option v-for="model in listModel.models" v-bind:key="model">
-              {{ model }}
-            </option>
-          </select>
+          <div class="filter-pair">
+            <label>Marca</label>
+            <select v-model="carFilter.brand" @change="runQuery">
+              <option v-for="brand in listBrands.brands" v-bind:key="brand">
+                {{ brand }}
+              </option>
+            </select>
+          </div>
+          <div class="filter-pair">
+            <label>Modelo</label>
+            <select v-model="carFilter.model">
+              <option v-for="model in listModel.models" v-bind:key="model">
+                {{ model }}
+              </option>
+            </select>
+          </div>
         </div>
         <div class="car-filter-group">
-          <label>Precio entre</label>
-          <input type="number" v-model="carFilter.price__gte" /><label>y</label
-          ><input type="number" v-model="carFilter.price__lte" />
+          <div class="filter-pair">
+            <label>Precio Desde</label>
+            <input type="number" v-model="carFilter.price__gte" />
+          </div>
+          <div class="filter-pair">
+            <label>Hasta</label
+            ><input type="number" v-model="carFilter.price__lte" />
+          </div>
         </div>
       </div>
       <button @click="filter">Filtrar</button>
@@ -101,6 +129,7 @@ export default {
         price__lte: "",
         price__gte: "",
       },
+      carFilterInput: {},
       listCategory: [],
       listCity: [],
       listBrands: "",
@@ -109,14 +138,28 @@ export default {
     };
   },
   methods: {
-    filter: function () {
-      console.log(this.carFilter);
+    filter: async function () {
+      if (this.carFilter.passengers) {
+        this.carFilter.passengers = parseInt(this.carFilter.passengers, 10);
+      }
+      for (const [key, value] of Object.entries(this.carFilter)) {
+        if (value) this.carFilterInput[key] = value;
+      }
+
+      this.$apollo.queries.filterCar.skip = false;
+      const result = await this.$apollo.queries.filterCar.refetch();
+      this.filterCar = result.data.filterCar;
+      console.log(this.filterCar);
+      this.$emit("results", this.filterCar);
     },
     runQuery: async function () {
       this.$apollo.queries.listModel.skip = false;
       const result = await this.$apollo.queries.listModel.refetch();
       this.listModel = result.data.listModel;
     },
+  },
+  created() {
+    this.filter();
   },
   apollo: {
     listCategory: {
@@ -186,14 +229,33 @@ export default {
         query FilterCar($carFilter: CarFilter!, $idUser: Int!) {
           filterCar(carFilter: $carFilter, idUser: $idUser) {
             id_car
+            license_plate
+            passengers
+            transmission
+            suitcase
+            air_conditioning
+            category_id {
+              id_category
+              name_category
+            }
+            city_id {
+              id_city
+              name_city
+            }
+            price
+            brand
+            model
           }
         }
       `,
       variables() {
         return {
           idUser: parseInt(localStorage.getItem("userId"), 10),
-          carFilter: this.carFilter,
+          carFilter: this.carFilterInput,
         };
+      },
+      skip() {
+        return this.skipQuery;
       },
     },
   },
@@ -233,8 +295,8 @@ export default {
   margin-bottom: 2.5%;
   color: var(--dark-blue-color);
   border: 1px solid var(--dark-blue-color);
-  border-radius: 10px;
-  padding-inline: 5%;
+  border-radius: 5px;
+  padding: 2% 5%;
 }
 .date-filter button {
   width: 86%;
@@ -244,7 +306,7 @@ export default {
   font-weight: bold;
   color: var(--white-color);
   padding: 4%;
-  margin: 5% 0 7% 7%;
+  margin: 10% 0 7% 7%;
   cursor: pointer;
 }
 
@@ -264,6 +326,7 @@ export default {
 .car-filter-group {
   display: flex;
   align-items: center;
+  margin-block: 1%;
 }
 
 .car-filter button {
@@ -279,11 +342,7 @@ export default {
 }
 
 .car-groups {
-  margin-left: 7%;
-}
-
-.car-groups select {
-  margin: 1% 3% 1% 1%;
+  margin-inline: 5%;
 }
 
 .car-groups input[type="checkbox"] {
@@ -306,5 +365,22 @@ export default {
   width: 10px;
   height: 10px;
   color: var(--white-color);
+}
+
+.filter-pair {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 3%;
+}
+.filter-pair select {
+  width: 55%;
+  border: 1px solid var(--dark-blue-color);
+  border-radius: 5px;
+}
+.filter-pair input {
+  width: 53%;
+  border: 1px solid var(--dark-blue-color);
+  border-radius: 5px;
 }
 </style>
