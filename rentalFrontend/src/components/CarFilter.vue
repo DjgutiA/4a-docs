@@ -299,10 +299,12 @@ export default {
 }
 
 .car-groups input[type="checkbox"]:checked::after {
-  content: "";
-  position: absolute;
+  content: "✔";
+  position: relative;
+  top: 1px;
+  left: 2.5px;
   width: 10px;
   height: 10px;
-  background-color: var(--white-color);
+  color: var(--white-color);
 }
 </style>
