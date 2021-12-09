@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
     <ul>
-      <li><a href="#vehicles-title">Vehículos</a></li>
+      <li><a href="#">Vehículos</a></li>
       <li><a href="#about-us">Sobre Nosotros</a></li>
       <li><a href="#" @click="logout">Cerrar Sesión</a></li>
     </ul>
