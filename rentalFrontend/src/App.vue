@@ -24,6 +24,14 @@ export default {
       },
     };
   },
+  computed: {
+    is_auth: {
+      get: function () {
+        return this.$route.meta.requiresAuth;
+      },
+      set: function () {},
+    },
+  },
   methods: {
     completedLogIn: async function (data) {
       localStorage.setItem("isAuth", true);
@@ -42,10 +50,13 @@ export default {
       Swal.fire({
         icon: "success",
         title: "Bienvenido " + localStorage.getItem("first_name"),
-        text: "Autenticación Exitosa",
+        text: "Autenticación Exitosas",
         confirmButtonColor: "#141e28",
       });
-      this.verifyAuth();
+      this.loadHome();
+    },
+    loadHome: function () {
+      this.$router.push({ name: "home" });
     },
     completedSignUp: async function (data) {
       await Swal.fire({
@@ -64,11 +75,6 @@ export default {
     loadLogIn: function () {
       this.$router.push({ name: "login" });
     },
-
-    dataUser: function () {},
-  },
-  created: function () {
-    this.verifyAuth();
   },
   apollo: {
     userDetailById: {

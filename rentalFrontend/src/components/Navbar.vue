@@ -1,7 +1,8 @@
 <template>
   <div class="navbar">
     <ul>
-      <li><a href="#">Vehículos</a></li>
+      <li><a v-if="is_admin">Administración</a></li>
+      <li><a @click="loadHome">Vehículos</a></li>
       <li><a href="#about-us">Sobre Nosotros</a></li>
       <li><a href="#" @click="logout">Cerrar Sesión</a></li>
     </ul>
@@ -13,6 +14,14 @@ import Swal from "sweetalert2";
 
 export default {
   name: "Navbar",
+  data: function () {
+    return {
+      is_admin: false,
+    };
+  },
+  created() {
+    if (localStorage.getItem("is_superuser") === "true") this.is_admin = true;
+  },
   methods: {
     logout: async function () {
       localStorage.clear();
@@ -22,7 +31,9 @@ export default {
         text: "Sesión Cerrada",
         confirmButtonColor: "#141e28",
       });
-      window.location.reload();
+    },
+    loadHome: function () {
+      this.$router.push({ name: "home" });
     },
   },
 };
@@ -67,6 +78,7 @@ export default {
 
 .navbar ul li a:hover {
   color: var(--pink-color);
+  cursor: pointer;
 }
 </style>
 
