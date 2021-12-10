@@ -112,9 +112,21 @@ export default {
       this.listCar = data;
     },
     selectCar: function (car) {
-      localStorage.setItem("id_car", car.id_car);
-      localStorage.setItem("license_plate", car.license_plate);
-      this.$router.push({ name: "carDetailed" });
+      if (
+        localStorage.getItem("start_date") &&
+        localStorage.getItem("end_date")
+      ) {
+        localStorage.setItem("id_car", car.id_car);
+        localStorage.setItem("license_plate", car.license_plate);
+        this.$router.push({ name: "carDetailed" });
+      } else {
+        Swal.fire({
+          icon: "warning",
+          title: "Confirme la disponibilidad",
+          text: "Por favor agregue fecha de recogida y de entrega, para confirmar la disponibilidad del vehículo.",
+          confirmButtonColor: "#141e28",
+        });
+      }
     },
     formatterNumber: function (value) {
       var formatter = new Intl.NumberFormat("es-CO", {});

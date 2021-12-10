@@ -124,7 +124,7 @@ export default {
         id_car: "",
       },
       getCar: {},
-      days: 2,
+      days: 0,
       prices: {
         secure: 50000,
         driver: 15000,
@@ -166,15 +166,26 @@ export default {
       this.prices.otherServices = totalServices;
 
       this.prices.total = this.prices.totalCar + this.prices.otherServices;
-      this.prices.taxes = this.prices.total - this.prices.total / 1.19;
+      this.prices.taxes = Math.round((this.prices.total * 0.19) / 1.19);
+    },
+    updateTotal: function () {
+      if (this.getCar.id_car) {
+        this.prices.carPrice = this.getCar.price;
+        this.prices.totalCar = this.getCar.price * this.days;
+        this.addValue();
+      }
     },
   },
   updated() {
-    if (this.getCar.id_car) {
-      this.prices.carPrice = this.getCar.price;
-      this.prices.totalCar = this.getCar.price * this.days;
-      this.addValue();
-    }
+    this.updateTotal();
+  },
+  created() {
+    this.days =
+      (Date.parse(localStorage.getItem("end_date")) -
+        Date.parse(localStorage.getItem("start_date"))) /
+        (1000 * 60 * 60 * 24) +
+      1;
+    this.updateTotal();
   },
   apollo: {
     getCar: {
