@@ -97,7 +97,7 @@
               <p>${{ formatterNumber(prices.total) }}</p>
             </div>
           </div>
-          <button type="button">Reservar</button>
+          <button type="button" @click="createRentalCar">Reservar</button>
         </div>
       </div>
     </div>
@@ -109,6 +109,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import gql from "graphql-tag";
+import Swal from "sweetalert2";
 
 export default {
   name: "CarDetailed",
@@ -142,18 +143,80 @@ export default {
         gps: false,
         otherPlace: false,
       },
+      rentalInput: {
+        idUser: null,
+        idCar: null,
+        startDate: null,
+        finalDate: null,
+        price: null,
+      },
     };
   },
   methods: {
+    createRentalCar: async function () {
+      this.rentalInput.idUser = parseInt(localStorage.getItem("userId"), 10);
+      this.rentalInput.idCar = parseInt(localStorage.getItem("id_car"), 10);
+      this.rentalInput.startDate = localStorage.getItem("start_date");
+      this.rentalInput.finalDate = localStorage.getItem("end_date");
+      this.rentalInput.price = this.prices.total;
+      Swal.fire({
+        title: "¿Esta seguro de generar la reserva?",
+        text: `Reserva del ${this.rentalInput.startDate} al ${
+          this.rentalInput.finalDate
+        } por el valor de $ ${this.formatterNumber(this.rentalInput.price)}`,
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#141e28",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si",
+        cancelButtonText: "Cancelar",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await this.$apollo
+            .mutate({
+              mutation: gql`
+                mutation CreateRental($rentalInput: RentalInput!) {
+                  createRental(rentalInput: $rentalInput) {
+                    id
+                  }
+                }
+              `,
+              variables: {
+                rentalInput: this.rentalInput,
+              },
+            })
+            .then((result) => {
+              const rental = result.data.createRental.id;
+              localStorage.removeItem("end_date");
+              localStorage.removeItem("start_date");
+              localStorage.removeItem("id_car");
+              Swal.fire({
+                icon: "success",
+                title:
+                  "Gracias por su compra " + localStorage.getItem("first_name"),
+                text: `Su numero de reserva es ${rental}`,
+                confirmButtonColor: "#141e28",
+              });
+              this.$router.push({ name: "home" });
+            })
+            .catch((error) => {
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "ERROR 401: No se pudo generar la reserva.",
+                confirmButtonColor: "#141e28",
+              });
+            });
+        }
+      });
+    },
     formatterNumber: function (value) {
       var formatter = new Intl.NumberFormat("es-CO", {});
       return formatter.format(value);
     },
     changeStatus: function (key) {
       this.status[key] ? (this.status[key] = false) : (this.status[key] = true);
-      console.log(this.status);
       this.addValue();
-      console.log(this.prices);
     },
     addValue: function () {
       let totalServices = 0;

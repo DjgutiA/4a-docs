@@ -158,7 +158,6 @@ export default {
       for (const [key, value] of Object.entries(this.carFilter)) {
         if (value) this.carFilterInput[key] = value;
       }
-      console.log(this.carFilter);
       this.$apollo.queries.filterCar.skip = false;
       const result = await this.$apollo.queries.filterCar.refetch();
       this.filterCar = result.data.filterCar;
