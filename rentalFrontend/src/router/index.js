@@ -9,8 +9,8 @@ import Login from '../components/Login.vue'
 import Home from '../views/Home.vue'
 import Signup from '../components/Signup.vue'
 import CarDetailed from '../components/CarDetailed.vue'
+import Rentals from '../views/Rentals.vue'
 import carIndex from '../views/Administration/carIndex.vue'
-
 
 const routes = [{
         path: '/',
@@ -36,7 +36,12 @@ const routes = [{
         component: CarDetailed,
         meta: { requiresAuth: true }
     },
-
+    {
+        path: '/user/rentals',
+        name: 'rentals',
+        component: Rentals,
+        meta: { requiresAuth: true }
+    },
     {
         path: '/car',
         name: 'carIndex',
