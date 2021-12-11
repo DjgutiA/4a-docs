@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
     <ul>
-      <li><a v-if="is_admin">Administración</a></li>
+      <li><a v-if="is_admin" @click="pushRoute('carIndex')">Administración</a></li>
       <li><a @click="loadHome">Vehículos</a></li>
       <li><a href="#about-us">Sobre Nosotros</a></li>
       <li><a href="#" @click="logout">Cerrar Sesión</a></li>
@@ -35,7 +35,13 @@ export default {
     loadHome: function () {
       this.$router.push({ name: "home" });
     },
+    pushRoute: function(route){
+      this.$router.push({ name: route });
+    },  
   },
+
+  
+
 };
 </script>
 

@@ -6,7 +6,6 @@ import { createApolloProvider } from '@vue/apollo-option'
 import { setContext } from 'apollo-link-context'
 
 const httpLink = createHttpLink({
-    //pendiente por la url del apigateway
     uri: 'https://apigateway-sixrental.herokuapp.com/',
 })
 
