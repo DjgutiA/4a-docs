@@ -9,6 +9,7 @@ import Login from '../components/Login.vue'
 import Home from '../views/Home.vue'
 import Signup from '../components/Signup.vue'
 import CarDetailed from '../components/CarDetailed.vue'
+import Rentals from '../views/Rentals.vue'
 
 
 const routes = [
@@ -34,6 +35,12 @@ const routes = [
     path: '/carDetailed',
     name: 'carDetailed',
     component: CarDetailed,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/user/rentals',
+    name: 'rentals',
+    component: Rentals,
     meta: { requiresAuth: true }
   },
 
