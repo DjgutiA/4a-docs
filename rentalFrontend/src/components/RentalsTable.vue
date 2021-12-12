@@ -30,6 +30,7 @@
     </table>
   </div>
 </template>
+
 <script>
 import Swal from "sweetalert2";
 import gql from "graphql-tag";
@@ -118,6 +119,7 @@ export default {
   },
 };
 </script>
+
 <style>
 .rental-table {
   margin-top: 10%;

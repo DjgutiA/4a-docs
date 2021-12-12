@@ -18,17 +18,15 @@
             <h4 class="model">{{ car.model }}</h4>
             <h4 class="model">{{ car.license_plate }}</h4>
             <div class="addon-logo">
-              <img
-                src="../../assets/images/Car_details/edit.svg"
-                alt="Editar"
+              <i
+                class="fas fa-edit fa-xs"
                 @click="editCar(car)"
               />
-              <img
-                src="../../assets/images/Car_details/trash.svg"
-                alt="Eliminar"
+              <i
+                class="fas fa-trash fa-xs"
                 @click="deleteCar(car.id_car)"
               />
-              <i @click="loadCalendar(car.id_car)" class="fas fa-history"></i>
+              <i @click="loadCalendar(car.id_car)" class="fas fa-history fa-xs"></i>
             </div>
           </div>
 
@@ -262,6 +260,8 @@ export default {
 
 .title {
   display: flex;
+  width: 100%;
+  margin-top: 2%;
 }
 
 .title h3 {
@@ -269,15 +269,13 @@ export default {
 }
 
 .title button {
-  display: flex;
-  height: 50%;
   background-color: var(--light-blue-color);
   border: 1px solid var(--light-blue-color);
   border-radius: 10px;
   font-weight: bold;
-  font-size: 70%;
+  font-size: 50%;
   color: var(--white-color);
-  padding: 2%;
+  padding: 15px;
   cursor: pointer;
 }
 
@@ -286,16 +284,22 @@ export default {
 }
 
 .addon-logo {
+  width: 80%;
+  margin-left: 10%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content:space-evenly;
 }
 
-.addon-logo img {
-  height: 10%;
-  width: 20%;
-  margin-right: 5%;
-  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(203deg)
-    brightness(102%) contrast(102%);
+.fa-history:before{
+  color: var(--white-color);
+}
+
+.fa-trash:before{
+  color: var(--white-color);
+}
+
+.fa-edit:before{
+  color:var(--white-color)
 }
 </style>

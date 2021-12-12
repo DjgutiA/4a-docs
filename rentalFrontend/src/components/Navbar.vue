@@ -55,6 +55,7 @@ export default {
   top: 0;
   background-color: var(--dark-blue-color);
   opacity: 85%;
+  text-align:center;
 }
 
 .navbar ul {
@@ -71,6 +72,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 50%;
 }
 
 .navbar ul li a {
@@ -79,7 +81,7 @@ export default {
   color: var(--white-color);
 }
 
-.navbar ul li:nth-child(-n + 3) {
+.navbar ul li:nth-child(-n + 4) {
   padding-right: 3%;
   border-right: 2px solid var(--light-blue-color);
 }

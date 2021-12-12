@@ -345,6 +345,25 @@ export default {
 <style scoped>
 form {
   width: 100%;
+  font-size: 50%;
+  color: var(--dark-blue-color);
+}
+.body-car{
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.container{
+  width: 80%;
+  height: 80%;
+  margin-top: 2%;
+}
+
+.subContainer{
+  width: 100%;
+  height: 100%;
 }
 
 .car-filter-group {
@@ -387,8 +406,8 @@ form {
 .car-groups input[type="checkbox"]:checked::after {
   content: "✔";
   position: relative;
-  top: 1px;
   left: 2.5px;
+  bottom: 2px;
   width: 10px;
   height: 10px;
   color: var(--white-color);
