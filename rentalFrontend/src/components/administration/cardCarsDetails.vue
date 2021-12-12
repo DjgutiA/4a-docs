@@ -6,7 +6,12 @@
     </div>
 
     <section v-if="listCar[0]" class="cars-section">
-      <div class="card" v-for="car in listCar" v-bind:key="car.id_car" v-bind:id="car.id_car">
+      <div
+        class="card"
+        v-for="car in listCar"
+        v-bind:key="car.id_car"
+        v-bind:id="car.id_car"
+      >
         <div class="container-info">
           <div class="vehicle-info">
             <h3 class="brand">{{ car.brand }}</h3>
@@ -23,6 +28,7 @@
                 alt="Eliminar"
                 @click="deleteCar(car.id_car)"
               />
+              <i @click="loadCalendar(car.id_car)" class="fas fa-history"></i>
             </div>
           </div>
 
@@ -111,8 +117,8 @@ export default {
         denyButtonText: "No",
       }).then((result) => {
         if (result.isConfirmed) {
-         this.processDeleteCar(car);
-         document.getElementById(car).remove();
+          this.processDeleteCar(car);
+          document.getElementById(car).remove();
         }
       });
     },
@@ -147,6 +153,10 @@ export default {
             confirmButtonColor: "#141e28",
           });
         });
+    },
+    loadCalendar: function (id_car) {
+      this.$router.push({ name: "availability" });
+      localStorage.setItem("id_car", id_car);
     },
   },
   created: function () {},

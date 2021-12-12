@@ -1,11 +1,17 @@
 <template>
-  <navbar />
-  <CardCarsDetails :listCar="listCar" v-if="showListComponent" 
-                    @createCar="createCar" @editCar="editCar" />
-  <carOperations :carUpdate="car" v-if="showOperationsComponent" @CarRegisterComplete="CarRegisterComplete"/>
+  <Navbar @initialAdmin="carRegisterComplete" />
+  <CardCarsDetails
+    :listCar="listCar"
+    v-if="showListComponent"
+    @createCar="createCar"
+    @editCar="editCar"
+  />
+  <carOperations
+    :carUpdate="car"
+    v-if="showOperationsComponent"
+    @carRegisterComplete="carRegisterComplete"
+  />
   <Footer />
-
-  
 </template>
 
 <script>
@@ -16,51 +22,46 @@ import HeroSection from "@/components/HeroSection";
 import carOperations from "@/components/administration/carOperations";
 import gql from "graphql-tag";
 
-
 export default {
-  components: { Navbar, Footer, CardCarsDetails, HeroSection, carOperations  },
+  components: { Navbar, Footer, CardCarsDetails, HeroSection, carOperations },
   name: "carIndex",
   data: function () {
     return {
       listCar: [],
       showListComponent: false,
       showOperationsComponent: false,
-      car: {}
+      car: {},
     };
   },
 
   methods: {
-    createCar: function(){
-      this.showListComponent = false,
-      this.showOperationsComponent= true
+    createCar: function () {
+      (this.showListComponent = false), (this.showOperationsComponent = true);
     },
 
-    editCar: function(car){
-      this.showListComponent = false
-      this.car.category = car.category_id.id_category
-      this.car.city =  car.city_id.id_city
-      this.car = {...this.car, ...car};
-      this.showOperationsComponent= true
+    editCar: function (car) {
+      this.showListComponent = false;
+      this.car.category = car.category_id.id_category;
+      this.car.city = car.city_id.id_city;
+      this.car = { ...this.car, ...car };
+      this.showOperationsComponent = true;
     },
 
-    CarRegisterComplete:function(){
-      this.refreshCardCars("")
-      this.showListComponent = true,
-      this.showOperationsComponent= false
+    carRegisterComplete: function () {
+      this.refreshCardCars("");
+      (this.showListComponent = true), (this.showOperationsComponent = false);
     },
-    
-    refreshCardCars: async function(license_plate){
-      if(license_plate == ""){
-         const result =  await this.$apollo.queries.getCars.refetch();
-        this.listCar = result.data.listCar; 
-        this.showListComponent = true
+
+    refreshCardCars: async function (license_plate) {
+      if (license_plate == "") {
+        const result = await this.$apollo.queries.getCars.refetch();
+        this.listCar = result.data.listCar;
+        this.showListComponent = true;
       }
     },
-
-
   },
   created: async function () {
-   this.refreshCardCars("");
+    this.refreshCardCars("");
   },
   apollo: {
     getCars: {
@@ -93,11 +94,10 @@ export default {
         };
       },
     },
-    
   },
 };
 </script>
 
-<style scoped lang="css">
+<style scoped>
 @import "../../assets/css/carStyle.css";
 </style>

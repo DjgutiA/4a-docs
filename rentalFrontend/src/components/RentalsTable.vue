@@ -1,6 +1,6 @@
 <template>
   <div class="rental-table">
-    <table>
+    <table v-if="listRentalByUser[0]">
       <tbody>
         <tr>
           <th>No. Reserva</th>
@@ -118,7 +118,7 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style>
 .rental-table {
   margin-top: 10%;
 }

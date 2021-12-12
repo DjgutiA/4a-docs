@@ -110,7 +110,9 @@
               </div>
             </div>
             <button type="submit" v-if="operation == 'create'">Crear</button>
-            <button type="submit" v-if="operation == 'update'">Modificar</button>
+            <button type="submit" v-if="operation == 'update'">
+              Modificar
+            </button>
           </div>
         </form>
       </div>
@@ -186,7 +188,7 @@ export default {
           },
         })
         .then((result) => {
-          this.$emit("CarRegisterComplete");
+          this.$emit("carRegisterComplete");
           Swal.fire({
             icon: "success",
             title: "Exito",
@@ -205,11 +207,11 @@ export default {
     },
 
     updateCar: async function () {
-      const idCar = this.car.id_car
-      delete this.car.id_car
-      delete this.car.category_id
-      delete this.car.city_id
-      delete this.car.__typename
+      const idCar = this.car.id_car;
+      delete this.car.id_car;
+      delete this.car.category_id;
+      delete this.car.city_id;
+      delete this.car.__typename;
 
       this.car.passengers = parseInt(this.car.passengers, 10);
       this.car.price = parseInt(this.car.price, 10);
@@ -230,11 +232,11 @@ export default {
           variables: {
             idUser: parseInt(localStorage.getItem("userId"), 10),
             carInput: this.car,
-            idCar: idCar
+            idCar: idCar,
           },
         })
         .then((result) => {
-          this.$emit("CarRegisterComplete");
+          this.$emit("carRegisterComplete");
           Swal.fire({
             icon: "success",
             title: "Exito",
@@ -340,7 +342,7 @@ export default {
 };
 </script>
       
-<style>
+<style scoped>
 form {
   width: 100%;
 }
@@ -409,7 +411,7 @@ form {
   border-radius: 5px;
 }
 
-.car-filter h3{
+.car-filter h3 {
   text-align: center;
 }
 </style>
