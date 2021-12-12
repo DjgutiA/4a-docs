@@ -1,11 +1,15 @@
 <template>
-  <div>
+  <div class="container">
     <div class="date-filter">
       <h3>Elige la fechas</h3>
-      <label for="">Desde</label>
-      <input type="date" v-model="availabilityInput.start_date" required />
-      <label for="">Hasta</label>
-      <input type="date" v-model="availabilityInput.end_date" required />
+      <div>
+        <label for="">Desde</label>
+        <input type="date" v-model="availabilityInput.start_date" required />
+      </div>
+      <div>
+        <label for="">Hasta</label>
+        <input type="date" v-model="availabilityInput.end_date" required />
+      </div>
       <button @click="createAvailability">Crear</button>
     </div>
     <div class="rental-table">
@@ -13,7 +17,7 @@
         <tbody>
           <tr>
             <th>Fecha</th>
-            <th>Estatus</th>
+            <th>Estado</th>
             <th>Modificado</th>
           </tr>
         </tbody>
@@ -21,16 +25,17 @@
           v-for="availability in filterAvailabilityByCar"
           :key="availability.id_availability"
         >
-          <th>{{ availability.date }}</th>
-          <th v-if="availability.is_availability">Disponible</th>
-          <th v-else>Reservado</th>
-          <th>{{ availability.modified.substr(0, 10) }}</th>
+          <td>{{ availability.date }}</td>
+          <td v-if="availability.is_availability">Disponible</td>
+          <td v-else>Reservado</td>
+          <td>{{ availability.modified.substr(0, 10) }}</td>
         </tr>
       </table>
-      <h1 v-else>No hay información</h1>
+      <h1 v-else class="no-info-founded">No hay disponibilidades para este vehículo</h1>
     </div>
   </div>
 </template>
+
 <script>
 import Swal from "sweetalert2";
 import gql from "graphql-tag";
@@ -73,5 +78,94 @@ export default {
   },
 };
 </script>
-<style>
+
+<style scoped>
+
+.container{
+  display: flex;
+  justify-content: center;
+  margin-top: 8%;
+  margin-bottom: 5%;
+}
+
+.date-filter{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid var(--dark-blue-color);
+  border-radius: 10px;
+  width: 30%;
+  margin-right: 3%;
+  height: 35%;
+  box-shadow: 4px 4px 9px 1px rgba(0, 0, 0, 0.1);
+}
+
+.date-filter h3{
+  color:var(--dark-blue-color);
+  text-align: center;
+  font-size: 90%;
+  margin-bottom: 8%;
+}
+
+.date-filter input[type="date"] {
+  color: var(--dark-blue-color);
+  border: 1px solid var(--dark-blue-color);
+  border-radius: 5px;
+  font-size: 50%;
+  width: 80%;
+  margin-left: 2%;
+  margin-bottom: 5%;
+}
+
+.date-filter button{
+  font-size: 50%;
+  color: var(--white-color);
+  background-color: var(--light-blue-color);
+  border: 1px solid var(--light-blue-color);
+  padding: 2%;
+  width: 50%;
+  margin-block: 5%;
+  border-radius: 5px;
+}
+
+.date-filter div{
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
+}
+
+.date-filter div label{
+  font-size: 50%;
+  margin: 0;
+}
+.rental-table{
+  width: 60%;
+}
+.rental-table table{
+  border: 2px solid var(--dark-blue-color);
+  border-radius: 10px;
+  font-size: 50%;
+  width: 100%;
+  font-weight: 400;
+  color: var(--dark-blue-color);
+  border-collapse: collapse;
+}
+.rental-table table{
+  box-shadow: 4px 4px 9px 1px rgba(0, 0, 0, 0.25);
+}
+
+tr{
+  text-align: center;
+}
+
+tr:nth-child(even) {
+  background-color: var(--light-blue-color);
+  color: white;
+}
+
+.no-info-founded{
+  font-size: 90%;
+  color: var(--dark-blue-color);
+}
 </style>

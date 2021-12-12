@@ -1,6 +1,8 @@
 <template>
-  <div class="rental-table">
-    <table v-if="listRentalByUser[0]">
+<div class="parent">
+  <h2>Mis Reservas</h2>
+  <div class="container">
+    <table v-if="listRentalByUser[0]" class="rental-table">
       <tbody>
         <tr>
           <th>No. Reserva</th>
@@ -28,7 +30,9 @@
         </th>
       </tr>
     </table>
+    <h1 v-else class="no-info-founded">Aún no tienes reservas</h1>
   </div>
+</div>
 </template>
 
 <script>
@@ -120,23 +124,53 @@ export default {
 };
 </script>
 
-<style>
-.rental-table {
-  margin-top: 10%;
+<style scoped>
+.parent{
+  width: 100%;
+  margin-top: 8%;
+  margin-bottom: 5%;
 }
-table {
-  width: 40%;
+.container{
+  display: flex;
+  justify-content: center;
+}
+.rental-table{
+  width: 60%;
+}
+.rental-table{
+  border: 2px solid var(--dark-blue-color);
+  border-radius: 10px;
+  font-size: 50%;
+  width: 90%;
+  font-weight: 400;
+  color: var(--dark-blue-color);
   border-collapse: collapse;
-}
-th {
-  font-size: 70%;
-  font-weight: bold;
-  border: 1px solid black;
+  box-shadow: 4px 4px 9px 1px rgba(0, 0, 0, 0.10);
 }
 
-td {
-  font-weight: normal;
-  width: 10%;
-  font-size: 60%;
+tr{
+  text-align: center;
+}
+
+tr:nth-child(even) {
+  background-color: var(--light-blue-color);
+  color: white;
+}
+
+h2{
+  color: var(--dark-blue-color);
+  font-size: 90%;
+  text-align: center;
+  margin-bottom: 3%;
+}
+
+.fa-trash, .fa-edit{
+  color: var(--dark-blue-color);
+  cursor: pointer;
+}
+
+.no-info-founded{
+  font-size: 100%;
+  color: var(--dark-blue-color);
 }
 </style>

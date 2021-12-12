@@ -2,10 +2,9 @@
   <div class="navbar">
     <ul>
       <li><a v-if="is_admin" @click="loadAdmin">Administración</a></li>
-      <li><a @click="loadHome">Vehículos</a></li>
+      <li><a @click="loadHome">Inicio</a></li>
       <li><a @click="loadRentals">Mis reservas</a></li>
-      <li><a href="#about-us">Sobre Nosotros</a></li>
-      <li><a href="#" @click="logout">Cerrar Sesión</a></li>
+      <li><a @click="logout">Cerrar Sesión</a></li>
     </ul>
   </div>
 </template>
