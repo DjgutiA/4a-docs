@@ -1,5 +1,5 @@
 {
-    "name": "rental_frontend",
+    "name": "SixRental",
     "version": "0.1.0",
     "private": true,
     "scripts": {
@@ -19,6 +19,7 @@
         "graphql-tag": "^2.12.6",
         "jwt-decode": "^3.1.2",
         "serve-static": "^1.14.1",
+        "sweetalert2": "^11.3.0",
         "vue": "^3.0.0",
         "vue-router": "^4.0.0-0",
         "vuex": "^3.6.2"

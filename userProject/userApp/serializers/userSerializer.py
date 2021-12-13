@@ -26,5 +26,6 @@ class UserSerializer(serializers.ModelSerializer):
             'password': user.password,
             'birth_date': user.birth_date,
             'cellphone': user.cellphone,
-            'gender': user.gender
+            'gender': user.gender,
+            'is_superuser': user.is_superuser
         }
