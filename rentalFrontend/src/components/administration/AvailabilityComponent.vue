@@ -10,6 +10,13 @@
         <label for="">Hasta</label>
         <input type="date" v-model="availabilityInput.end_date" required />
       </div>
+      <div>
+        <label for="">Estado</label>
+        <select v-model="availabilityInput.is_availability">
+          <option value="true">Disponible</option>
+          <option value="false">Reservado</option>
+        </select>
+      </div>
       <button @click="createAvailability">Crear</button>
     </div>
     <div class="rental-table">
@@ -31,7 +38,9 @@
           <td>{{ availability.modified.substr(0, 10) }}</td>
         </tr>
       </table>
-      <h1 v-else class="no-info-founded">No hay disponibilidades para este vehículo</h1>
+      <h1 v-else class="no-info-founded">
+        No hay disponibilidades para este vehículo
+      </h1>
     </div>
   </div>
 </template>
@@ -52,6 +61,69 @@ export default {
         is_availability: "",
       },
     };
+  },
+  methods: {
+    createAvailability: async function () {
+      if (
+        this.availabilityInput.start_date != "" &&
+        this.availabilityInput.end_date != "" &&
+        this.availabilityInput.is_availability != "" &&
+        Date.parse(this.availabilityInput.start_date) <=
+          Date.parse(this.availabilityInput.end_date)
+      ) {
+        this.availabilityInput.car = parseInt(
+          localStorage.getItem("id_car"),
+          10
+        );
+        this.availabilityInput.is_availability == "true"
+          ? (this.availabilityInput.is_availability = true)
+          : (this.availabilityInput.is_availability = false);
+        await this.$apollo
+          .mutate({
+            mutation: gql`
+              mutation CreateAvailability(
+                $availabilityInput: AvailabilityInput!
+                $idUser: Int
+              ) {
+                createAvailability(
+                  availabilityInput: $availabilityInput
+                  idUser: $idUser
+                ) {
+                  id_availability
+                }
+              }
+            `,
+            variables: {
+              idUser: parseInt(localStorage.getItem("userId"), 10),
+              availabilityInput: this.availabilityInput,
+            },
+          })
+          .then((result) => {
+            Swal.fire({
+              icon: "success",
+              title: "Exito",
+              text: "Se creo el rango de fechas al vehiculo",
+              confirmButtonColor: "#141e28",
+            });
+          })
+          .catch((error) => {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "ERROR: Fallo en la creación de fechas." + error,
+              confirmButtonColor: "#141e28",
+            });
+          });
+        this.$apollo.queries.filterAvailabilityByCar.refetch();
+      } else {
+        Swal.fire({
+          icon: "warning",
+          title: "Datos incorrectos",
+          text: "Verifique las fechas y el estado seleccionado",
+          confirmButtonColor: "#141e28",
+        });
+      }
+    },
   },
   created: function () {},
   apollo: {
@@ -80,15 +152,14 @@ export default {
 </script>
 
 <style scoped>
-
-.container{
+.container {
   display: flex;
   justify-content: center;
   margin-top: 8%;
   margin-bottom: 5%;
 }
 
-.date-filter{
+.date-filter {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -100,14 +171,16 @@ export default {
   box-shadow: 4px 4px 9px 1px rgba(0, 0, 0, 0.1);
 }
 
-.date-filter h3{
-  color:var(--dark-blue-color);
+.date-filter h3 {
+  color: var(--dark-blue-color);
   text-align: center;
   font-size: 90%;
   margin-bottom: 8%;
 }
 
-.date-filter input[type="date"] {
+.date-filter input[type="date"],
+select {
+  background-color: var(--white-color);
   color: var(--dark-blue-color);
   border: 1px solid var(--dark-blue-color);
   border-radius: 5px;
@@ -117,7 +190,8 @@ export default {
   margin-bottom: 5%;
 }
 
-.date-filter button{
+.date-filter button {
+  cursor: pointer;
   font-size: 50%;
   color: var(--white-color);
   background-color: var(--light-blue-color);
@@ -128,21 +202,25 @@ export default {
   border-radius: 5px;
 }
 
-.date-filter div{
+.date-filter button:hover {
+  background-color: var(--pink-color);
+}
+
+.date-filter div {
   margin: 0;
   display: flex;
   justify-content: space-around;
   width: 90%;
 }
 
-.date-filter div label{
+.date-filter div label {
   font-size: 50%;
   margin: 0;
 }
-.rental-table{
+.rental-table {
   width: 60%;
 }
-.rental-table table{
+.rental-table table {
   border: 2px solid var(--dark-blue-color);
   border-radius: 10px;
   font-size: 50%;
@@ -151,11 +229,11 @@ export default {
   color: var(--dark-blue-color);
   border-collapse: collapse;
 }
-.rental-table table{
+.rental-table table {
   box-shadow: 4px 4px 9px 1px rgba(0, 0, 0, 0.25);
 }
 
-tr{
+tr {
   text-align: center;
 }
 
@@ -164,7 +242,7 @@ tr:nth-child(even) {
   color: white;
 }
 
-.no-info-founded{
+.no-info-founded {
   font-size: 90%;
   color: var(--dark-blue-color);
 }

@@ -16,9 +16,9 @@
         src="../assets/images/2019-mercedes-benz-gls-class-450-suv-angular-front.png"
         alt="Mercedes SUV 450"
       />
-      <button id="submit" type="submit">Reserva Ya</button>
+      <a href="#rental-place"><button>Reserva Ya</button></a>
     </section>
-    <CarFilter v-on:results="results"></CarFilter>
+    <CarFilter v-on:results="results" id="rental-place"></CarFilter>
     <h3 class="vehicles-title" id="vehicles-title">Nuestros vehículos</h3>
 
     <section v-if="listCar[0]" class="cars-section">

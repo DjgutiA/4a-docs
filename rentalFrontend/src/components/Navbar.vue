@@ -1,5 +1,11 @@
 <template>
   <div class="navbar">
+    <img
+      v-if="$route.name != 'home'"
+      class="logo-navbar"
+      src="../assets/images/logo_transparent.png"
+      @click="loadHome"
+    />
     <ul>
       <li><a v-if="is_admin" @click="loadAdmin">Administración</a></li>
       <li><a @click="loadHome">Inicio</a></li>
@@ -31,6 +37,7 @@ export default {
         text: "Sesión Cerrada",
         confirmButtonColor: "#141e28",
       });
+      this.$router.push({ name: "login" });
     },
     loadHome: function () {
       this.$router.push({ name: "home" });
@@ -53,8 +60,10 @@ export default {
   position: absolute;
   top: 0;
   background-color: var(--dark-blue-color);
-  opacity: 85%;
-  text-align:center;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .navbar ul {
@@ -63,6 +72,7 @@ export default {
   justify-content: right;
   height: 100%;
   margin: 0 5% 0 40%;
+  width: 60%;
 }
 
 .navbar ul li {
@@ -88,6 +98,12 @@ export default {
 .navbar ul li a:hover {
   color: var(--pink-color);
   cursor: pointer;
+}
+.logo-navbar {
+  margin-top: 0.5%;
+  width: 7%;
+  margin-left: 4%;
+  object-fit: cover;
 }
 </style>
 
