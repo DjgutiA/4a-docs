@@ -1,0 +1,27 @@
+.body-car {
+    padding-top: 5%;
+    background-color: var(--dark-blue-color);
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.subContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: var(--white-color);
+    border-radius: 10px;
+    width: 90%;
+    height: 100%;
+    padding: 0 0.5% 0 0.5%;
+    margin: 0 2% 0 2%;
+    box-shadow: 4px 4px 9px 1px rgba(0, 0, 0, 0.5);
+}

@@ -77,5 +77,6 @@ class AvailabilityDetailforCarView(generics.ListAPIView):
     serializer_class = AvailabilitySerializer
 
     def get_queryset(self):
-        queryset = Availability.objects.filter(car=self.kwargs['car'])
+        queryset = Availability.objects.filter(
+            car=self.kwargs['car']).order_by('-date')
         return queryset
